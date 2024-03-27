@@ -1,4 +1,6 @@
-﻿namespace esercizio1;
+﻿//Creare una .NET Console App in C# che effettui il calcolo del resto da dare ai clienti. L’applicazione chiederà all’utente di inserire il costo del prodotto acquistato e l’importo pagato dal cliente. Dopo aver ricevuto questi dati, l’applicazione calcolerà e mostrerà il resto dovuto al cliente. Tutti i valori devono essere gestiti come decimal, quindi sarà necessario implementare opportune conversioni di tipo.
+
+namespace esercizio1;
 
 public static class Program
 {
@@ -10,7 +12,7 @@ public static class Program
             decimal importoPagato = 0;
 
             var inputValido = false;
-
+            
             // chiede all'utente il costo del prodotto con controllo se il costo del prodotto venga inserito giusto
             while (!inputValido)
             {
