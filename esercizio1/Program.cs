@@ -4,22 +4,32 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        decimal costoProdotto;
-        decimal importoPagato;
+        decimal costoProdotto = 0;
+        decimal importoPagato = 0;
         decimal resto;
 
-        Console.Write("Inserisci il costo del prodotto acquistato: ");
-        if (!decimal.TryParse(Console.ReadLine(), out costoProdotto) || costoProdotto < 0)
+        var inputValido = false;
+
+        // Ciclo per chiedere all'utente di inserire il costo del prodotto finché l'input non è valido
+        while (!inputValido)
         {
-            Console.WriteLine("\nIl costo del prodotto inserito non è valido.");
-            return;
+            Console.Write("Inserisci il costo del prodotto acquistato: ");
+            if (!decimal.TryParse(Console.ReadLine(), out costoProdotto) || costoProdotto < 0)
+                Console.WriteLine("\nIl costo del prodotto inserito non è valido. Riprova.");
+            else
+                inputValido = true;
         }
 
-        Console.Write("Inserisci l'importo pagato dal cliente: ");
-        if (!decimal.TryParse(Console.ReadLine(), out importoPagato) || importoPagato < 0)
+        inputValido = false;
+
+        // Ciclo per chiedere all'utente di inserire l'importo pagato finché l'input non è valido
+        while (!inputValido)
         {
-            Console.WriteLine("\nL'importo pagato inserito non è valido.");
-            return;
+            Console.Write("Inserisci l'importo pagato dal cliente: ");
+            if (!decimal.TryParse(Console.ReadLine(), out importoPagato) || importoPagato < 0)
+                Console.WriteLine("\nL'importo pagato inserito non è valido. Riprova.");
+            else
+                inputValido = true;
         }
 
         if (importoPagato < costoProdotto)
@@ -30,6 +40,6 @@ public class Program
 
         resto = importoPagato - costoProdotto;
 
-        Console.WriteLine($"Il resto da dare al cliente è: {resto}"); //scapocchione
+        Console.WriteLine($"Il resto da dare al cliente è: {resto}");
     }
 }
