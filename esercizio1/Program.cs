@@ -16,10 +16,22 @@ public class Program
             while (!inputValido)
             {
                 Console.Write("Inserisci il costo del prodotto acquistato: ");
-                if (!decimal.TryParse(Console.ReadLine(), out costoProdotto) || costoProdotto < 0)
-                    Console.WriteLine("\nIl costo del prodotto inserito non è valido. Riprova.");
-                else
+                try
+                {
+                    costoProdotto = decimal.Parse(Console.ReadLine()!);
+                    if (costoProdotto < 0)
+                        throw new ArgumentException("Il costo del prodotto inserito non è valido.");
+
                     inputValido = true;
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("\nIl costo del prodotto inserito non è valido. Riprova.");
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
 
             inputValido = false;
@@ -28,12 +40,24 @@ public class Program
             while (!inputValido)
             {
                 Console.Write("Inserisci l'importo pagato dal cliente: ");
-                if (!decimal.TryParse(Console.ReadLine(), out importoPagato) || importoPagato < 0)
-                    Console.WriteLine("\nL'importo pagato inserito non è valido. Riprova.");
-                else if (importoPagato < costoProdotto)
-                    Console.WriteLine("\nL'importo pagato è inferiore al costo del prodotto. Riprova.");
-                else
+                try
+                {
+                    importoPagato = decimal.Parse(Console.ReadLine()!);
+                    if (importoPagato < 0)
+                        throw new ArgumentException("L'importo pagato inserito non è valido.");
+                    if (importoPagato < costoProdotto)
+                        throw new ArgumentException("L'importo pagato è inferiore al costo del prodotto.");
+
                     inputValido = true;
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("\nL'importo pagato inserito non è valido. Riprova.");
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
 
             resto = importoPagato - costoProdotto;
