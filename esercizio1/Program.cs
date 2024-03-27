@@ -1,6 +1,6 @@
 ﻿namespace esercizio1;
 
-public class Program
+public static class Program
 {
     public static void Main(string[] args)
     {
@@ -8,7 +8,6 @@ public class Program
         {
             decimal costoProdotto = 0;
             decimal importoPagato = 0;
-            decimal resto;
 
             var inputValido = false;
 
@@ -20,7 +19,7 @@ public class Program
                 {
                     costoProdotto = decimal.Parse(Console.ReadLine()!);
                     if (costoProdotto < 0)
-                        throw new ArgumentException("Il costo del prodotto inserito non è valido.");
+                        throw new ArgumentException("\nIl costo del prodotto inserito non è valido.");
 
                     inputValido = true;
                 }
@@ -44,9 +43,9 @@ public class Program
                 {
                     importoPagato = decimal.Parse(Console.ReadLine()!);
                     if (importoPagato < 0)
-                        throw new ArgumentException("L'importo pagato inserito non è valido.");
+                        throw new ArgumentException("\nL'importo pagato inserito non è valido.");
                     if (importoPagato < costoProdotto)
-                        throw new ArgumentException("L'importo pagato è inferiore al costo del prodotto.");
+                        throw new ArgumentException("\nL'importo pagato è inferiore al costo del prodotto.");
 
                     inputValido = true;
                 }
@@ -60,7 +59,7 @@ public class Program
                 }
             }
 
-            resto = importoPagato - costoProdotto;
+            var resto = importoPagato - costoProdotto;
 
             Console.WriteLine($"Il resto da dare al cliente è: {resto}\n");
 
