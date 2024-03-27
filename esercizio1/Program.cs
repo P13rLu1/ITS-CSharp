@@ -30,6 +30,6 @@ public class Program
 
         resto = importoPagato - costoProdotto;
 
-        Console.WriteLine($"Il resto da dare al cliente è: {resto}"); //mongolian
+        Console.WriteLine($"Il resto da dare al cliente è: {resto}");
     }
 }
