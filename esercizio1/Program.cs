@@ -11,7 +11,7 @@ public static class Program
 
             var inputValido = false;
 
-            // Ciclo per chiedere all'utente di inserire il costo del prodotto finché l'input non è valido
+            // chiede all'utente il costo del prodotto con controllo se il costo del prodotto venga inserito giusto
             while (!inputValido)
             {
                 Console.Write("Inserisci il costo del prodotto acquistato: ");
@@ -35,7 +35,7 @@ public static class Program
 
             inputValido = false;
 
-            // Ciclo per chiedere all'utente di inserire l'importo pagato finché l'input non è valido
+            // chiedo importo pagato con controllo se l'importo pagato venga inserito giusto
             while (!inputValido)
             {
                 Console.Write("Inserisci l'importo pagato dal cliente: ");
