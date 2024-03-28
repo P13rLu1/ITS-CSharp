@@ -33,7 +33,9 @@ namespace esercizio2
                         continua = false;
                         break;
                     default:
-                        Console.WriteLine("Scelta non valida. Riprova.");
+                        Console.WriteLine("\nScelta non valida. Riprova. (Cugghiune)");
+                        Console.WriteLine("Premi un tasto per continuare...");
+                        Console.ReadKey();
                         break;
                 }
             }
