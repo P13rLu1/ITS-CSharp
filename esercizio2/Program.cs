@@ -34,7 +34,7 @@ namespace esercizio2
                         break;
                     default:
                         Console.WriteLine("\nScelta non valida. Riprova. (Coglione)");
-                        Console.WriteLine("Premi un tasto per continuare...");
+                        Console.Write("Premi un tasto per continuare...");
                         Console.ReadKey();
                         break;
                 }
@@ -48,14 +48,14 @@ namespace esercizio2
             Console.Write("Inserisci il primo numero: ");
             while (!double.TryParse(Console.ReadLine(), out num1))
             {
-                Console.WriteLine("Input non valido. Inserisci un numero valido.");
+                Console.WriteLine("\nInput non valido. Inserisci un numero valido.");
                 Console.Write("Primo numero: ");
             }
 
             Console.Write("Inserisci il secondo numero: ");
             while (!double.TryParse(Console.ReadLine(), out num2))
             {
-                Console.WriteLine("Input non valido. Inserisci un numero valido.");
+                Console.WriteLine("\nInput non valido. Inserisci un numero valido.");
                 Console.Write("Secondo numero: ");
             }
 
@@ -79,7 +79,9 @@ namespace esercizio2
                     }
                     else
                     {
-                        Console.WriteLine("Impossibile dividere per zero.");
+                        Console.WriteLine("\nImpossibile dividere per zero.");
+                        Console.Write("Premi un tasto per continuare...");
+                        Console.ReadKey();
                         return;
                     }
 
