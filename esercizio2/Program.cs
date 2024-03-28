@@ -89,8 +89,8 @@ namespace esercizio2
                     return;
             }
 
-            Console.WriteLine($"Risultato: {risultato}");
-            Console.WriteLine("Premi un tasto per continuare...");
+            Console.WriteLine($"\nRisultato: {risultato}");
+            Console.Write("Premi un tasto per continuare...");
             Console.ReadKey(); // Attende che l'utente prema un tasto
         }
     }
