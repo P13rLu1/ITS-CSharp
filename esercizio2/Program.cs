@@ -6,6 +6,7 @@ namespace esercizio2
     {
         private static void Main()
         {
+            Console.WriteLine("Benvenuto nella calcolatrice!\n");
             while (true)
             {
                 Console.Write(
@@ -13,7 +14,7 @@ namespace esercizio2
 
                 switch (Console.ReadLine())
                 {
-                    case "1": 
+                    case "1":
                         EseguiOperazione('+'); // Chiamata alla funzione per eseguire l'operazione di addizione
                         break;
                     case "2":
@@ -25,7 +26,7 @@ namespace esercizio2
                     case "4":
                         EseguiOperazione('/'); // Chiamata alla funzione per eseguire l'operazione di divisione
                         break;
-                    case "5": 
+                    case "5":
                         return; // Uscita dal programma
                     default: // Caso di scelta non valida
                         Console.WriteLine("\nScelta non valida. Riprova.");
@@ -55,7 +56,7 @@ namespace esercizio2
             switch (operatore)
             {
                 case '+': // Calcolo del risultato in base all'operatore scelto
-                    risultato = numeri[0] + numeri[1]; 
+                    risultato = numeri[0] + numeri[1];
                     break;
                 case '-':
                     risultato = numeri[0] - numeri[1];
