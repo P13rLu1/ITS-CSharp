@@ -36,9 +36,9 @@
 
         static void EseguiOperazione(char operatore)
         {
-            double[] numeri = new double[2];
+            var numeri = new double[2];
 
-            for (int i = 0; i < 2; i++)
+            for (var i = 0; i < 2; i++)
             {
                 Console.Write($"Inserisci il {(i == 0 ? "primo" : "secondo")} numero: ");
                 while (!double.TryParse(Console.ReadLine(), out numeri[i])) // Ripeti finché l'input non è un numero
