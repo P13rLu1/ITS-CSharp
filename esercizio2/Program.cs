@@ -59,7 +59,7 @@ namespace esercizio2
                 }
             }
 
-            var risultato = numeri[0]; // Inizializza il risultato con il primo numero
+            var risultato = numeri[0]; // Inizializzazione del risultato con il primo numero inserito
 
             switch (operatore)
             {
