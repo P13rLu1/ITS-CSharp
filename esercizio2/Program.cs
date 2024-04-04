@@ -39,42 +39,65 @@ namespace esercizio2
 
         private static void EseguiOperazione(char operatore) // Funzione per eseguire le operazioni matematiche
         {
-            var numeri = new double[2]; // Array per contenere i due numeri inseriti dall'utente
-
-            for (var i = 0; i < 2; i++)
+            Console.Write("Quanti numeri vuoi inserire? ");
+            int numNumeri;
+            while (!int.TryParse(Console.ReadLine(), out numNumeri) || numNumeri < 2) // Ripeti finché l'input non è un numero intero maggiore o uguale a 2
             {
-                Console.Write($"Inserisci il {(i == 0 ? "primo" : "secondo")} numero: ");
+                Console.WriteLine("\nInput non valido. Inserisci un numero intero maggiore o uguale a 2.");
+                Console.Write("Quanti numeri vuoi inserire? ");
+            }
+
+            var numeri = new double[numNumeri]; // Array per contenere i numeri inseriti
+
+            for (var i = 0; i < numNumeri; i++)
+            {
+                Console.Write($"Inserisci il {i + 1}° numero: ");
                 while (!double.TryParse(Console.ReadLine(), out numeri[i])) // Ripeti finché l'input non è un numero
                 {
                     Console.WriteLine("\nInput non valido. Inserisci un numero valido.");
-                    Console.Write($"{(i == 0 ? "Primo" : "Secondo")} numero: ");
+                    Console.Write($"Inserisci il {i + 1}° numero: ");
                 }
             }
 
-            double risultato;
+            var risultato = numeri[0]; // Inizializza il risultato con il primo numero
 
             switch (operatore)
             {
                 case '+': // Calcolo del risultato in base all'operatore scelto
-                    risultato = numeri[0] + numeri[1];
+                    for (var i = 1; i < numNumeri; i++)
+                    {
+                        risultato += numeri[i];
+                    }
+
                     break;
                 case '-':
-                    risultato = numeri[0] - numeri[1];
+                    for (var i = 1; i < numNumeri; i++)
+                    {
+                        risultato -= numeri[i];
+                    }
+
                     break;
                 case '*':
-                    risultato = numeri[0] * numeri[1];
+                    for (var i = 1; i < numNumeri; i++)
+                    {
+                        risultato *= numeri[i];
+                    }
+
                     break;
                 case '/':
-                    if (numeri[1] != 0) // Controllo per evitare la divisione per zero
+                    for (var i = 1; i < numNumeri; i++)
                     {
-                        risultato = numeri[0] / numeri[1];
-                    }
-                    else
-                    {
-                        Console.WriteLine("\nImpossibile dividere per zero.");
-                        Console.Write("Premi un tasto per continuare...");
-                        Console.ReadKey();
-                        return;
+                        if (numeri[i] != 0) // Controllo per evitare la divisione per zero
+                        {
+                            risultato /= numeri[i];
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nImpossibile dividere per zero.");
+                            Console.Write("Premi un tasto per continuare...");
+                            Console.ReadKey();
+                            return;
+                        }
                     }
 
                     break;
