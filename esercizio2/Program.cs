@@ -10,23 +10,23 @@ namespace esercizio2
             while (true)
             {
                 Console.Write(
-                    "Seleziona l'operazione desiderata:\n1. Addizione\n2. Sottrazione\n3. Moltiplicazione\n4. Divisione\n5. Esci\nScelta: "); // Menu di selezione
+                    "Seleziona l'operazione desiderata:\nA/a. Addizione\nS/s. Sottrazione\nM/m. Moltiplicazione\nD/d. Divisione\nE/e. Esci\nScelta: "); // Menu di selezione
 
-                switch (Console.ReadLine())
+                switch (Console.ReadLine()?.ToUpper())
                 {
-                    case "1":
+                    case "A":
                         EseguiOperazione('+'); // Chiamata alla funzione per eseguire l'operazione di addizione
                         break;
-                    case "2":
+                    case "S":
                         EseguiOperazione('-'); // Chiamata alla funzione per eseguire l'operazione di sottrazione
                         break;
-                    case "3":
+                    case "M":
                         EseguiOperazione('*'); // Chiamata alla funzione per eseguire l'operazione di moltiplicazione
                         break;
-                    case "4":
+                    case "D":
                         EseguiOperazione('/'); // Chiamata alla funzione per eseguire l'operazione di divisione
                         break;
-                    case "5":
+                    case "E":
                         return; // Uscita dal programma
                     default: // Caso di scelta non valida
                         Console.WriteLine("\nScelta non valida. Riprova.");
