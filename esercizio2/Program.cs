@@ -30,7 +30,7 @@ namespace esercizio2
                         return; // Uscita dal programma
                     default: // Caso di scelta non valida
                         Console.WriteLine("\nScelta non valida.");
-                        Console.WriteLine("Premi un tasto per riprovare...\n"); // Attesa di un input per continuare
+                        Console.Write("Premi un tasto per riprovare..."); // Attesa di un input per continuare
                         Console.ReadKey();
                         break;
                 }
