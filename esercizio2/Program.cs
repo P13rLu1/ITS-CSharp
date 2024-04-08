@@ -7,6 +7,7 @@ namespace esercizio2
         private static void Main()
         {
             Console.WriteLine("Benvenuto nella calcolatrice!\n");
+
             while (true)
             {
                 Console.Write(
@@ -39,24 +40,35 @@ namespace esercizio2
 
         private static void EseguiOperazione(char operatore) // Funzione per eseguire le operazioni matematiche
         {
-            Console.Write("Quanti numeri vuoi inserire? ");
-            int numNumeri;
-            while (!int.TryParse(Console.ReadLine(), out numNumeri) || numNumeri < 2) // Ripeti finché l'input non è un numero intero maggiore o uguale a 2
-            {
-                Console.WriteLine("\nInput non valido. Inserisci un numero intero maggiore o uguale a 2.");
-                Console.Write("Quanti numeri vuoi inserire? ");
-            }
+            var numeri = new List<double>(); // Lista per contenere i numeri inseriti
 
-            var numeri = new double[numNumeri]; // Array per contenere i numeri inseriti
+            Console.WriteLine("\nInserisci i numeri. Premi invio senza inserire un numero per terminare.");
 
-            for (var i = 0; i < numNumeri; i++)
+            while (true)
             {
-                Console.Write($"Inserisci il {i + 1}° numero: ");
-                while (!double.TryParse(Console.ReadLine(), out numeri[i])) // Ripeti finché l'input non è un numero
+                Console.Write("Inserisci un numero (invio per terminare): ");
+                var input = Console.ReadLine();
+
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    if (numeri.Count < 2)
+                    {
+                        Console.WriteLine("\nDevi inserire almeno due numeri.");
+                        continue;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+
+                if (!double.TryParse(input, out double numero))
                 {
                     Console.WriteLine("\nInput non valido. Inserisci un numero valido.");
-                    Console.Write($"Inserisci il {i + 1}° numero: ");
+                    continue;
                 }
+
+                numeri.Add(numero);
             }
 
             var risultato = numeri[0]; // Inizializzazione del risultato con il primo numero inserito
@@ -64,28 +76,28 @@ namespace esercizio2
             switch (operatore)
             {
                 case '+': // Calcolo del risultato in base all'operatore scelto
-                    for (var i = 1; i < numNumeri; i++)
+                    for (var i = 1; i < numeri.Count; i++)
                     {
                         risultato += numeri[i];
                     }
 
                     break;
                 case '-':
-                    for (var i = 1; i < numNumeri; i++)
+                    for (var i = 1; i < numeri.Count; i++)
                     {
                         risultato -= numeri[i];
                     }
 
                     break;
                 case '*':
-                    for (var i = 1; i < numNumeri; i++)
+                    for (var i = 1; i < numeri.Count; i++)
                     {
                         risultato *= numeri[i];
                     }
 
                     break;
                 case '/':
-                    for (var i = 1; i < numNumeri; i++)
+                    for (var i = 1; i < numeri.Count; i++)
                     {
                         if (numeri[i] != 0) // Controllo per evitare la divisione per zero
                         {
