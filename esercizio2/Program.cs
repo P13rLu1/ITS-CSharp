@@ -44,30 +44,31 @@ namespace esercizio2
 
             Console.WriteLine("\nInserisci i numeri. Premi invio senza inserire un numero per terminare.");
 
+            var contatoreDecorativo = 1;
+
             while (true)
             {
-                Console.Write("Inserisci un numero (invio per terminare): ");
+                Console.Write($"Inserisci il {contatoreDecorativo} numero: ");
                 var input = Console.ReadLine();
 
                 if (string.IsNullOrWhiteSpace(input))
                 {
-                    if (numeri.Count < 2)
+                    if (numeri.Count < 2) // Controllo per evitare di terminare l'inserimento con meno di due numeri
                     {
                         Console.WriteLine("\nDevi inserire almeno due numeri.");
                         continue;
                     }
-                    else
-                    {
-                        break;
-                    }
+
+                    break;
                 }
 
-                if (!double.TryParse(input, out double numero))
+                if (!double.TryParse(input, out var numero))
                 {
                     Console.WriteLine("\nInput non valido. Inserisci un numero valido.");
                     continue;
                 }
 
+                contatoreDecorativo++;
                 numeri.Add(numero);
             }
 
