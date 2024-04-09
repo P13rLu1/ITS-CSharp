@@ -14,25 +14,25 @@ namespace esercizio2
                 Console.Write(
                     "Seleziona l'operazione desiderata:\nA/a. Addizione\nS/s. Sottrazione\nM/m. Moltiplicazione\nD/d. Divisione\nE/e. Esci\nScelta: "); // Menu di selezione
 
-                continua = InserimentoOperazione(Console.ReadLine()?.ToUpper() ?? "");
+                continua = SceltaOperazione(Console.ReadLine()?.ToUpper() ?? "");
             }
         }
 
-        private static bool InserimentoOperazione(string operazione)
+        private static bool SceltaOperazione(string operazione)
         {
             switch (operazione)
             {
                 case "A":
-                    EseguiOperazione('+'); // Chiamata alla funzione per eseguire l'operazione di addizione
+                    InserisciNumeri('+'); // Chiamata alla funzione per eseguire l'operazione di addizione
                     break;
                 case "S":
-                    EseguiOperazione('-'); // Chiamata alla funzione per eseguire l'operazione di sottrazione
+                    InserisciNumeri('-'); // Chiamata alla funzione per eseguire l'operazione di sottrazione
                     break;
                 case "M":
-                    EseguiOperazione('*'); // Chiamata alla funzione per eseguire l'operazione di moltiplicazione
+                    InserisciNumeri('*'); // Chiamata alla funzione per eseguire l'operazione di moltiplicazione
                     break;
                 case "D":
-                    EseguiOperazione('/'); // Chiamata alla funzione per eseguire l'operazione di divisione
+                    InserisciNumeri('/'); // Chiamata alla funzione per eseguire l'operazione di divisione
                     break;
                 case "E":
                     return false; // Ritorna false per indicare che l'utente ha scelto di finire
@@ -44,8 +44,8 @@ namespace esercizio2
             }
             return true; //ritorna true per indicare che l'utente vuole continuare
         }
-
-        private static void EseguiOperazione(char operatore) // Funzione per eseguire le operazioni matematiche
+        
+        private static void InserisciNumeri(char operatore)
         {
             var numeri = new List<double>(); // Lista per contenere i numeri inseriti
 
@@ -82,6 +82,13 @@ namespace esercizio2
                 contatoreDecorativo++;
                 numeri.Add(numero);
             }
+            
+            EseguiOperazione(operatore, numeri);
+        }
+
+        private static void EseguiOperazione(char operatore, List<double> numeri) // Funzione per eseguire le operazioni matematiche
+        {
+            
 
             var risultato = numeri[0]; // Inizializzazione del risultato con il primo numero inserito
 
