@@ -51,7 +51,7 @@ namespace esercizio2
                 Console.Write($"Inserisci il {contatoreDecorativo} numero: ");
                 var input = Console.ReadLine();
 
-                if (string.IsNullOrWhiteSpace(input))
+                if (string.IsNullOrWhiteSpace(input)) //se viene inserito un input vuoto, il ciclo controlla che siano stati inseriti almeno due numeri, se la condizione ;è vera, il ciclo continua, altrimenti esce
                 {
                     if (numeri.Count < 2) // Controllo per evitare di terminare l'inserimento con meno di due numeri
                     {
@@ -62,7 +62,7 @@ namespace esercizio2
                     break;
                 }
 
-                if (!double.TryParse(input, out var numero))
+                if (!double.TryParse(input, out var numero)) // Controllo per evitare input non numerici
                 {
                     Console.WriteLine("\nInput non valido. Inserisci un numero valido.");
                     continue;
