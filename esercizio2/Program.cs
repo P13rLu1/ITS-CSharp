@@ -35,15 +35,14 @@ namespace esercizio2
                     EseguiOperazione('/'); // Chiamata alla funzione per eseguire l'operazione di divisione
                     break;
                 case "E":
-                    return false; // Ritorna true per indicare che l'utente ha scelto di uscire
+                    return false; // Ritorna false per indicare che l'utente ha scelto di finire
                 default: // Caso di scelta non valida
                     Console.WriteLine("\nScelta non valida.");
                     Console.Write("Premi un tasto per riprovare..."); // Attesa di un input per continuare
                     Console.ReadKey();
                     break;
             }
-
-            return true;
+            return true; //ritorna true per indicare che l'utente vuole continuare
         }
 
         private static void EseguiOperazione(char operatore) // Funzione per eseguire le operazioni matematiche
