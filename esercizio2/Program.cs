@@ -6,36 +6,44 @@ namespace esercizio2
     {
         private static void Main()
         {
+            var continua = true;
             Console.WriteLine("Benvenuto nella calcolatrice!\n");
 
-            while (true)
+            while (continua)
             {
                 Console.Write(
                     "Seleziona l'operazione desiderata:\nA/a. Addizione\nS/s. Sottrazione\nM/m. Moltiplicazione\nD/d. Divisione\nE/e. Esci\nScelta: "); // Menu di selezione
 
-                switch (Console.ReadLine()?.ToUpper())
-                {
-                    case "A":
-                        EseguiOperazione('+'); // Chiamata alla funzione per eseguire l'operazione di addizione
-                        break;
-                    case "S":
-                        EseguiOperazione('-'); // Chiamata alla funzione per eseguire l'operazione di sottrazione
-                        break;
-                    case "M":
-                        EseguiOperazione('*'); // Chiamata alla funzione per eseguire l'operazione di moltiplicazione
-                        break;
-                    case "D":
-                        EseguiOperazione('/'); // Chiamata alla funzione per eseguire l'operazione di divisione
-                        break;
-                    case "E":
-                        return; // Uscita dal programma
-                    default: // Caso di scelta non valida
-                        Console.WriteLine("\nScelta non valida.");
-                        Console.Write("Premi un tasto per riprovare..."); // Attesa di un input per continuare
-                        Console.ReadKey();
-                        break;
-                }
+                continua = InserimentoOperazione(Console.ReadLine()?.ToUpper() ?? "");
             }
+        }
+
+        private static bool InserimentoOperazione(string operazione)
+        {
+            switch (operazione)
+            {
+                case "A":
+                    EseguiOperazione('+'); // Chiamata alla funzione per eseguire l'operazione di addizione
+                    break;
+                case "S":
+                    EseguiOperazione('-'); // Chiamata alla funzione per eseguire l'operazione di sottrazione
+                    break;
+                case "M":
+                    EseguiOperazione('*'); // Chiamata alla funzione per eseguire l'operazione di moltiplicazione
+                    break;
+                case "D":
+                    EseguiOperazione('/'); // Chiamata alla funzione per eseguire l'operazione di divisione
+                    break;
+                case "E":
+                    return false; // Ritorna true per indicare che l'utente ha scelto di uscire
+                default: // Caso di scelta non valida
+                    Console.WriteLine("\nScelta non valida.");
+                    Console.Write("Premi un tasto per riprovare..."); // Attesa di un input per continuare
+                    Console.ReadKey();
+                    break;
+            }
+
+            return true;
         }
 
         private static void EseguiOperazione(char operatore) // Funzione per eseguire le operazioni matematiche
@@ -48,10 +56,14 @@ namespace esercizio2
 
             while (true)
             {
-                Console.Write($"Inserisci il {contatoreDecorativo} numero" + (contatoreDecorativo <= 2 ? " (obbligatorio): " : " (premi INVIO per finire): ")); // Messaggio per l'inserimento del numero    
+                Console.Write($"Inserisci il {contatoreDecorativo} numero" +
+                              (contatoreDecorativo <= 2
+                                  ? " (obbligatorio): "
+                                  : " (premi INVIO per finire): ")); // Messaggio per l'inserimento del numero    
                 var input = Console.ReadLine();
 
-                if (string.IsNullOrWhiteSpace(input)) //se viene inserito un input vuoto, il ciclo controlla che siano stati inseriti almeno due numeri, se la condizione ;è vera, il ciclo continua, altrimenti esce
+                if (string.IsNullOrWhiteSpace(
+                        input)) //se viene inserito un input vuoto, il ciclo controlla che siano stati inseriti almeno due numeri, se la condizione ;è vera, il ciclo continua, altrimenti esce
                 {
                     if (numeri.Count < 2) // Controllo per evitare di terminare l'inserimento con meno di due numeri
                     {
