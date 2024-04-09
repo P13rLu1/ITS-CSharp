@@ -42,9 +42,10 @@ namespace esercizio2
                     Console.ReadKey();
                     break;
             }
+
             return true; //ritorna true per indicare che l'utente vuole continuare
         }
-        
+
         private static void InserisciNumeri(char operatore)
         {
             var numeri = new List<double>(); // Lista per contenere i numeri inseriti
@@ -82,14 +83,13 @@ namespace esercizio2
                 contatoreDecorativo++;
                 numeri.Add(numero);
             }
-            
+
             EseguiOperazione(operatore, numeri);
         }
 
-        private static void EseguiOperazione(char operatore, List<double> numeri) // Funzione per eseguire le operazioni matematiche
+        private static void
+            EseguiOperazione(char operatore, List<double> numeri) // Funzione per eseguire le operazioni matematiche
         {
-            
-
             var risultato = numeri[0]; // Inizializzazione del risultato con il primo numero inserito
 
             switch (operatore)
