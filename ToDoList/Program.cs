@@ -19,7 +19,7 @@ namespace ToDoList
             }
         }
 
-        private static bool SceltaOperazione(string operazione , List<string> toDoList)
+        private static bool SceltaOperazione(string operazione, List<string> toDoList)
         {
             switch (operazione)
             {
@@ -74,15 +74,74 @@ namespace ToDoList
                 contatoreDecorativo++;
                 toDoList.Add(input);
             }
-            
+
             Console.Write("\nPremi un tasto per continuare...");
             Console.ReadKey();
         }
 
         private static void RimuoviLista(List<string> toDoList)
         {
-            Console.WriteLine(
-                "\nInserisci l'indice dell'attività da rimuovere. Premi invio senza inserire un testo per terminare.");
+            Console.Write("Vuoi Rimuovere un singolo elemento o tutti? (S-s/T-t): ");
+
+            switch (Console.ReadLine()?.ToUpper())
+            {
+                case "S":
+                    do
+                    {
+                        Console.Write(
+                            $"\nInserisci il numero dell'attività da rimuovere\nci sono {toDoList.Count} attività: "); 
+                        var input = Console.ReadLine();
+
+                        if (!int.TryParse(input, out var numeroAttivita) || numeroAttivita < 1 ||
+                            numeroAttivita > toDoList.Count) // Controllo per evitare di rimuovere un numero non valido o non esistente nella lista 
+                        {
+                            Console.WriteLine("\nNumero non valido.");
+                            Console.Write("Premi un tasto per continuare...");
+                            Console.ReadKey();
+                            return;
+                        }
+
+                        Console.Write(
+                            $"Stai per rimuovere l'attività: \"{toDoList[numeroAttivita - 1]}\", sei sicuro? (S-s/N-n): "); // Messaggio di conferma per la rimozione dell'attività
+                        if (Console.ReadLine()?.ToUpper() == "S")
+                        {
+                            toDoList.RemoveAt(numeroAttivita - 1);
+                            Console.WriteLine("\nAttività rimossa con successo.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nAttività non rimossa.");
+                        }
+
+                        Console.Write("Vuoi rimuovere un'altra attività? (S-s/N-n): ");
+                    } while (Console.ReadLine()?.ToUpper() == "S");
+
+                    Console.Write("Premi un tasto per continuare...");
+                    Console.ReadKey();
+                    break;
+
+                case "T":
+                    Console.Write("Sei sicuro di voler rimuovere tutte le attività? (S-s/N-n): ");
+                    if (Console.ReadLine()?.ToUpper() == "S")
+                    {
+                        toDoList.Clear();
+                        Console.WriteLine("\nTutte le attività sono state rimosse.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nAttività non rimosse.");
+                    }
+
+                    Console.Write("Premi un tasto per continuare...");
+                    Console.ReadKey();
+                    break;
+
+                default:
+                    Console.WriteLine("\nScelta non valida.");
+                    Console.Write("Premi un tasto per continuare...");
+                    Console.ReadKey();
+                    break;
+            }
         }
 
         private static void VisualizzaLista(List<string> toDoList)
