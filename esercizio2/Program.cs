@@ -48,7 +48,7 @@ namespace esercizio2
 
             while (true)
             {
-                Console.Write($"Inserisci il {contatoreDecorativo} numero: ");
+                Console.Write($"Inserisci il {contatoreDecorativo} numero" + (contatoreDecorativo <= 2 ? " (obbligatorio): " : " (premi INVIO per finire): ")); // Messaggio per l'inserimento del numero    
                 var input = Console.ReadLine();
 
                 if (string.IsNullOrWhiteSpace(input)) //se viene inserito un input vuoto, il ciclo controlla che siano stati inseriti almeno due numeri, se la condizione ;è vera, il ciclo continua, altrimenti esce
