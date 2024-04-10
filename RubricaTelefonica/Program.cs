@@ -233,33 +233,33 @@ public static class Program
         Console.WriteLine(
             $"\nHo trovato il contatto:\nNome: {contattoDaModificare.Nome}\nCognome: {contattoDaModificare.Cognome}\nNumero di telefono: {contattoDaModificare.NumeroDiTelefono}"); // Stampa il contatto trovato all'utente per conferma
 
-        switch (scelta)
+        switch (scelta) // Modifica del campo selezionato dall'utente 
         {
-            case "N":
-                Console.Write("Inserisci il nuovo nome: ");
+            case "N": // Modifica del nome del contatto 
+                Console.Write("Inserisci il nuovo nome: "); 
                 contattoDaModificare.Nome = Console.ReadLine() ?? "";
 
-                if (string.IsNullOrWhiteSpace(contattoDaModificare.Nome))
+                if (string.IsNullOrWhiteSpace(contattoDaModificare.Nome)) // Controllo che il nome non sia vuoto
                 {
                     Console.WriteLine("\nNome non valido.");
                 }
 
                 break;
             case "C":
-                Console.Write("Inserisci il nuovo cognome: ");
+                Console.Write("Inserisci il nuovo cognome: "); // Modifica del cognome del contatto
                 contattoDaModificare.Cognome = Console.ReadLine() ?? "";
 
-                if (string.IsNullOrWhiteSpace(contattoDaModificare.Cognome))
+                if (string.IsNullOrWhiteSpace(contattoDaModificare.Cognome)) // Controllo che il cognome non sia vuoto
                 {
                     Console.WriteLine("\nCognome non valido.");
                 }
 
                 break;
             case "T":
-                Console.Write("Inserisci il nuovo numero di telefono: ");
+                Console.Write("Inserisci il nuovo numero di telefono: "); // Modifica del numero di telefono del contatto
                 contattoDaModificare.NumeroDiTelefono = Console.ReadLine() ?? "";
 
-                if (string.IsNullOrWhiteSpace(contattoDaModificare.NumeroDiTelefono))
+                if (string.IsNullOrWhiteSpace(contattoDaModificare.NumeroDiTelefono)) // Controllo che il numero di telefono non sia vuoto
                 {
                     Console.WriteLine("\nNumero di telefono non valido.");
                 }
@@ -268,26 +268,16 @@ public static class Program
             case "A":
                 Console.Write("Inserisci il nuovo nome: ");
                 contattoDaModificare.Nome = Console.ReadLine() ?? "";
-
-                if (string.IsNullOrWhiteSpace(contattoDaModificare.Nome))
-                {
-                    Console.WriteLine("\nNome non valido.");
-                }
                 
                 Console.Write("Inserisci il nuovo cognome: ");
                 contattoDaModificare.Cognome = Console.ReadLine() ?? "";
-
-                if (string.IsNullOrWhiteSpace(contattoDaModificare.Cognome))
-                {
-                    Console.WriteLine("\nCognome non valido.");
-                }
                 
                 Console.Write("Inserisci il nuovo numero di telefono: ");
                 contattoDaModificare.NumeroDiTelefono = Console.ReadLine() ?? "";
-                
-                if (string.IsNullOrWhiteSpace(contattoDaModificare.NumeroDiTelefono))
+
+                if (string.IsNullOrWhiteSpace(contattoDaModificare.Nome) || string.IsNullOrWhiteSpace(contattoDaModificare.Cognome) || string.IsNullOrWhiteSpace(contattoDaModificare.NumeroDiTelefono)) // Controllo che nessuno dei campi sia vuoto 
                 {
-                    Console.WriteLine("\nNumero di telefono non valido.");
+                    Console.WriteLine("\nUno o più campi non validi.");
                 }
                 break;
         }
