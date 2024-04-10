@@ -13,7 +13,7 @@ namespace ToDoList
             while (continua)
             {
                 Console.Write(
-                    "Seleziona l'operazione desiderata:\nA/a. Aggiungi\nR/r. Rimuovi\nV/v. Visualizza\nE/e. Esci\nScelta: "); // Menu di selezione
+                    "Seleziona l'operazione desiderata:\nA/a. Aggiungi\nR/r. Rimuovi\nV/v. Visualizza\nM/m. Modifica\nE/e. Esci\nScelta: "); // Menu di selezione
 
                 continua = SceltaOperazione(Console.ReadLine()?.ToUpper() ?? "", toDoList);
             }
@@ -34,6 +34,10 @@ namespace ToDoList
                 case "V":
                     Console.WriteLine("\nSei nel visualizza");
                     VisualizzaLista(toDoList);
+                    break;
+                case "M":
+                    Console.WriteLine("\nSei nel modifica");
+                    ModificaLista(toDoList);
                     break;
                 case "E":
                     return false; // Ritorna false per indicare che l'utente ha scelto di finire
@@ -153,6 +157,35 @@ namespace ToDoList
             }
 
             Console.Write("\nPremi un tasto per continuare...");
+            Console.ReadKey();
+        }
+
+        private static void ModificaLista(List<string> toDoList)
+        {
+            Console.Write($"inserisci il numero dell'attività da modificare\nci sono {toDoList.Count} attività:");
+            if (!int.TryParse(Console.ReadLine(), out var numeroAttivita) || numeroAttivita < 1 ||
+                numeroAttivita > toDoList.Count) // Controllo per evitare di modificare un numero non valido o non esistente nella lista
+            {
+                Console.WriteLine("\nNumero non valido.");
+                Console.Write("Premi un tasto per continuare...");
+                Console.ReadKey();
+                return;
+            }
+            
+            Console.Write("sei sicuro di voler modificare l'attività? (S-s/N-n): ");
+            if (Console.ReadLine()?.ToUpper() == "S")
+            {
+                Console.Write(
+                    $"Stai per modificare l'attività: \"{toDoList[numeroAttivita - 1]}\", inserisci la nuova attività: ");
+                toDoList[numeroAttivita - 1] = Console.ReadLine() ?? "";
+            }
+            else
+            {
+                Console.WriteLine("\nAttività non modificata.");
+            }
+            
+            Console.WriteLine("\nAttività modificata con successo.");
+            Console.Write("Premi un tasto per continuare...");
             Console.ReadKey();
         }
     }
