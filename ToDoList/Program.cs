@@ -165,11 +165,8 @@ namespace ToDoList
             Console.Write($"inserisci il numero dell'attività da modificare\nci sono {toDoList.Count} attività:");
             if (!int.TryParse(Console.ReadLine(), out var numeroAttivita) || numeroAttivita < 1 ||
                 numeroAttivita > toDoList.Count) // Controllo per evitare di modificare un numero non valido o non esistente nella lista
-            {
+            {                
                 Console.WriteLine("\nNumero non valido.");
-                Console.Write("Premi un tasto per continuare...");
-                Console.ReadKey();
-                return;
             }
             
             Console.Write("sei sicuro di voler modificare l'attività? (S-s/N-n): ");
