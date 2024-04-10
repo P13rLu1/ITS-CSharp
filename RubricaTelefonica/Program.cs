@@ -274,7 +274,7 @@ public static class Program
                 
                 Console.Write("Inserisci il nuovo numero di telefono: ");
                 contattoDaModificare.NumeroDiTelefono = Console.ReadLine() ?? "";
-
+                
                 if (string.IsNullOrWhiteSpace(contattoDaModificare.Nome) || string.IsNullOrWhiteSpace(contattoDaModificare.Cognome) || string.IsNullOrWhiteSpace(contattoDaModificare.NumeroDiTelefono)) // Controllo che nessuno dei campi sia vuoto 
                 {
                     Console.WriteLine("\nUno o più campi non validi.");
