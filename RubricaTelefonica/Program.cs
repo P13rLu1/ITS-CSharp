@@ -171,17 +171,20 @@ public static class Program
             switch (scelta)
             {
                 case "N":
-                    ModificaNome(rubrica); // Chiamata al metodo per la modifica del nome del contatto 
+                    ModificaContattiSelezione(rubrica,
+                        scelta); // Chiamata al metodo per la modifica del nome del contatto 
                     break;
                 case "C":
-                    ModificaCognome(rubrica); // Chiamata al metodo per la modifica del cognome del contatto
+                    ModificaContattiSelezione(rubrica,
+                        scelta); // Chiamata al metodo per la modifica del cognome del contatto
                     break;
                 case "T":
-                    ModificaNumeroDiTelefono(
-                        rubrica); // Chiamata al metodo per la modifica del numero di telefono del contatto
+                    ModificaContattiSelezione(rubrica,
+                        scelta); // Chiamata al metodo per la modifica del numero di telefono del contatto
                     break;
                 case "A":
-                    ModificaTutto(rubrica); // Chiamata al metodo per la modifica di tutti i campi del contatto
+                    ModificaContattiSelezione(rubrica,
+                        scelta); // Chiamata al metodo per la modifica di tutti i campi del contatto
                     break;
                 default:
                     Console.WriteLine("Scelta non valida.");
@@ -201,7 +204,7 @@ public static class Program
         } while (continua);
     }
 
-    private static void ModificaNome(List<Contatto> rubrica)
+    private static void ModificaContattiSelezione(List<Contatto> rubrica, string scelta)
     {
         Console.Write("Inserisci il numero di telefono del contatto da modificare: ");
         var numeroDiTelefono = Console.ReadLine();
@@ -229,153 +232,64 @@ public static class Program
 
         Console.WriteLine(
             $"\nHo trovato il contatto:\nNome: {contattoDaModificare.Nome}\nCognome: {contattoDaModificare.Cognome}\nNumero di telefono: {contattoDaModificare.NumeroDiTelefono}"); // Stampa il contatto trovato all'utente per conferma
-        Console.Write("Inserisci il nuovo nome: ");
-        contattoDaModificare.Nome = Console.ReadLine() ?? "";
 
-        if (string.IsNullOrWhiteSpace(contattoDaModificare.Nome))
+        switch (scelta)
         {
-            Console.WriteLine("\nNome non valido.");
-            return;
-        }
+            case "N":
+                Console.Write("Inserisci il nuovo nome: ");
+                contattoDaModificare.Nome = Console.ReadLine() ?? "";
 
-        Console.WriteLine("\nNome modificato con successo!");
-    }
+                if (string.IsNullOrWhiteSpace(contattoDaModificare.Nome))
+                {
+                    Console.WriteLine("\nNome non valido.");
+                }
 
-    private static void ModificaCognome(List<Contatto> rubrica)
-    {
-        Console.Write("Inserisci il numero di telefono del contatto da modificare: ");
-        var numeroDiTelefono = Console.ReadLine();
-
-        Contatto?
-            contattoDaModificare =
-                null; // Inizializza contattoDaModificare a null per indicare che non è stato trovato alcun contatto con il numero di telefono specificato dall'utente all'inizio
-        foreach (var contatto in rubrica) // Scansione di tutti i contatti nella rubrica
-        {
-            if (contatto.NumeroDiTelefono ==
-                numeroDiTelefono) // Cerca il contatto con il numero di telefono specificato dall'utente 
-            {
-                contattoDaModificare =
-                    contatto; // Salva il contatto trovato in contattoDaModificare e interrompe il ciclo 
                 break;
-            }
-        }
+            case "C":
+                Console.Write("Inserisci il nuovo cognome: ");
+                contattoDaModificare.Cognome = Console.ReadLine() ?? "";
 
-        if (contattoDaModificare ==
-            null) // Se non è stato trovato alcun contatto con il numero di telefono specificato dall'utente stampa un messaggio di errore e termina il metodo
-        {
-            Console.WriteLine("Contatto non trovato.");
-            return;
-        }
+                if (string.IsNullOrWhiteSpace(contattoDaModificare.Cognome))
+                {
+                    Console.WriteLine("\nCognome non valido.");
+                }
 
-        Console.WriteLine(
-            $"\nHo trovato il contatto:\nNome: {contattoDaModificare.Nome}\nCognome: {contattoDaModificare.Cognome}\nNumero di telefono: {contattoDaModificare.NumeroDiTelefono}"); // Stampa il contatto trovato all'utente per conferma
-        Console.Write("Inserisci il nuovo cognome: ");
-        contattoDaModificare.Cognome = Console.ReadLine() ?? "";
-
-        if (string.IsNullOrWhiteSpace(contattoDaModificare.Cognome))
-        {
-            Console.WriteLine("\nCognome non valido.");
-            return;
-        }
-
-        Console.WriteLine("\nCognome modificato con successo!");
-    }
-
-    private static void ModificaNumeroDiTelefono(List<Contatto> rubrica)
-    {
-        Console.Write("Inserisci il numero di telefono del contatto da modificare: ");
-        var numeroDiTelefono = Console.ReadLine();
-
-        Contatto?
-            contattoDaModificare =
-                null; // Inizializza contattoDaModificare a null per indicare che non è stato trovato alcun contatto con il numero di telefono specificato dall'utente all'inizio
-        foreach (var contatto in rubrica) // Scansione di tutti i contatti nella rubrica
-        {
-            if (contatto.NumeroDiTelefono ==
-                numeroDiTelefono) // Cerca il contatto con il numero di telefono specificato dall'utente 
-            {
-                contattoDaModificare =
-                    contatto; // Salva il contatto trovato in contattoDaModificare e interrompe il ciclo 
                 break;
-            }
-        }
+            case "T":
+                Console.Write("Inserisci il nuovo numero di telefono: ");
+                contattoDaModificare.NumeroDiTelefono = Console.ReadLine() ?? "";
 
-        if (contattoDaModificare ==
-            null) // Se non è stato trovato alcun contatto con il numero di telefono specificato dall'utente stampa un messaggio di errore e termina il metodo
-        {
-            Console.WriteLine("Contatto non trovato.");
-            return;
-        }
+                if (string.IsNullOrWhiteSpace(contattoDaModificare.NumeroDiTelefono))
+                {
+                    Console.WriteLine("\nNumero di telefono non valido.");
+                }
 
-        Console.WriteLine(
-            $"\nHo trovato il contatto:\nNome: {contattoDaModificare.Nome}\nCognome: {contattoDaModificare.Cognome}\nNumero di telefono: {contattoDaModificare.NumeroDiTelefono}"); // Stampa il contatto trovato all'utente per conferma
-        Console.Write("Inserisci il nuovo numero di telefono: ");
-        contattoDaModificare.NumeroDiTelefono = Console.ReadLine() ?? "";
-
-        if (string.IsNullOrWhiteSpace(contattoDaModificare.NumeroDiTelefono))
-        {
-            Console.WriteLine("\nNumero di telefono non valido.");
-            return;
-        }
-
-        Console.WriteLine("\nNumero di telefono modificato con successo!");
-    }
-
-    private static void ModificaTutto(List<Contatto> rubrica)
-    {
-        Console.Write("Inserisci il numero di telefono del contatto da modificare: ");
-        var numeroDiTelefono = Console.ReadLine();
-
-        Contatto?
-            contattoDaModificare =
-                null; // Inizializza contattoDaModificare a null per indicare che non è stato trovato alcun contatto con il numero di telefono specificato dall'utente all'inizio
-        foreach (var contatto in rubrica) // Scansione di tutti i contatti nella rubrica
-        {
-            if (contatto.NumeroDiTelefono ==
-                numeroDiTelefono) // Cerca il contatto con il numero di telefono specificato dall'utente 
-            {
-                contattoDaModificare =
-                    contatto; // Salva il contatto trovato in contattoDaModificare e interrompe il ciclo 
                 break;
-            }
+            case "A":
+                Console.Write("Inserisci il nuovo nome: ");
+                contattoDaModificare.Nome = Console.ReadLine() ?? "";
+
+                if (string.IsNullOrWhiteSpace(contattoDaModificare.Nome))
+                {
+                    Console.WriteLine("\nNome non valido.");
+                }
+                
+                Console.Write("Inserisci il nuovo cognome: ");
+                contattoDaModificare.Cognome = Console.ReadLine() ?? "";
+
+                if (string.IsNullOrWhiteSpace(contattoDaModificare.Cognome))
+                {
+                    Console.WriteLine("\nCognome non valido.");
+                }
+                
+                Console.Write("Inserisci il nuovo numero di telefono: ");
+                contattoDaModificare.NumeroDiTelefono = Console.ReadLine() ?? "";
+                
+                if (string.IsNullOrWhiteSpace(contattoDaModificare.NumeroDiTelefono))
+                {
+                    Console.WriteLine("\nNumero di telefono non valido.");
+                }
+                break;
         }
-
-        if (contattoDaModificare ==
-            null) // Se non è stato trovato alcun contatto con il numero di telefono specificato dall'utente stampa un messaggio di errore e termina il metodo
-        {
-            Console.WriteLine("Contatto non trovato.");
-            return;
-        }
-
-        Console.WriteLine(
-            $"\nHo trovato il contatto:\nNome: {contattoDaModificare.Nome}\nCognome: {contattoDaModificare.Cognome}\nNumero di telefono: {contattoDaModificare.NumeroDiTelefono}"); // Stampa il contatto trovato all'utente per conferma
-        Console.Write("Inserisci il nuovo nome: ");
-        contattoDaModificare.Nome = Console.ReadLine() ?? "";
-
-        if (string.IsNullOrWhiteSpace(contattoDaModificare.Nome))
-        {
-            Console.WriteLine("\nNome non valido.");
-            return;
-        }
-
-        Console.Write("Inserisci il nuovo cognome: ");
-        contattoDaModificare.Cognome = Console.ReadLine() ?? "";
-
-        if (string.IsNullOrWhiteSpace(contattoDaModificare.Cognome))
-        {
-            Console.WriteLine("\nCognome non valido.");
-            return;
-        }
-
-        Console.Write("Inserisci il nuovo numero di telefono: ");
-        contattoDaModificare.NumeroDiTelefono = Console.ReadLine() ?? "";
-
-        if (string.IsNullOrWhiteSpace(contattoDaModificare.NumeroDiTelefono))
-        {
-            Console.WriteLine("\nNumero di telefono non valido.");
-            return;
-        }
-
-        Console.WriteLine("\nContatto modificato con successo!");
     }
 }
