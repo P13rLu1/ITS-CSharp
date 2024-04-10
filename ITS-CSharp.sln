@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "calcolatrice", "calcolatric
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoList", "ToDoList\ToDoList.csproj", "{492CB115-B97B-4F32-A54F-4A870753DAD5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EsempioOggetti", "EsempioOggetti\EsempioOggetti.csproj", "{E57E5649-18E3-4B4A-B36F-60F546341B62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RubricaTelefonica", "RubricaTelefonica\RubricaTelefonica.csproj", "{A3DAD309-F932-413A-A4A6-F97A53B04B34}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{492CB115-B97B-4F32-A54F-4A870753DAD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{492CB115-B97B-4F32-A54F-4A870753DAD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{492CB115-B97B-4F32-A54F-4A870753DAD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E57E5649-18E3-4B4A-B36F-60F546341B62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E57E5649-18E3-4B4A-B36F-60F546341B62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E57E5649-18E3-4B4A-B36F-60F546341B62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E57E5649-18E3-4B4A-B36F-60F546341B62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3DAD309-F932-413A-A4A6-F97A53B04B34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3DAD309-F932-413A-A4A6-F97A53B04B34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3DAD309-F932-413A-A4A6-F97A53B04B34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3DAD309-F932-413A-A4A6-F97A53B04B34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
