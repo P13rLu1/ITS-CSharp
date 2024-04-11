@@ -159,7 +159,7 @@ public static class Program
         {
             return; // Se la rubrica è vuota, termina il metodo senza fare ulteriori operazioni
         }
-        
+
         foreach (var contatto in rubrica) // Scansione di tutti i contatti nella rubrica e stampa di ciascuno di essi 
         {
             Console.WriteLine(
@@ -172,12 +172,12 @@ public static class Program
 
     private static void ModificaContatto(List<Contatto> rubrica)
     {
-        var continua = true;
-
         if (RubricaVuota(rubrica))
         {
             return; // Se la rubrica è vuota, termina il metodo senza fare ulteriori operazioni
         }
+
+        var continua = true;
 
         do
         {
@@ -315,6 +315,7 @@ public static class Program
             Console.ReadKey();
             return true;
         }
+
         return false;
     }
 }
