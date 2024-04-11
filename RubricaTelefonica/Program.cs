@@ -93,7 +93,13 @@ public static class Program
 
     private static void RimuoviContatto(List<Contatto> rubrica)
     {
+        if (RubricaVuota(rubrica))
+        {
+            return; // Se la rubrica è vuota, termina il metodo senza fare ulteriori operazioni
+        }
+
         var continua = true;
+
         do // Ciclo per permettere all'utente di rimuovere più contatti in una sola sessione 
         {
             Console.Write("Inserisci il numero di telefono del contatto da rimuovere: ");
@@ -149,12 +155,9 @@ public static class Program
 
     private static void VisualizzaContatto(List<Contatto> rubrica)
     {
-        if (rubrica.Count == 0) // Se la rubrica è vuota, stampa un messaggio e termina il metodo
+        if (RubricaVuota(rubrica))
         {
-            Console.WriteLine("\nRubrica vuota.");
-            Console.WriteLine("Premi un tasto per continuare...");
-            Console.ReadKey();
-            return;
+            return; // Se la rubrica è vuota, termina il metodo senza fare ulteriori operazioni
         }
         
         foreach (var contatto in rubrica) // Scansione di tutti i contatti nella rubrica e stampa di ciascuno di essi 
@@ -170,6 +173,12 @@ public static class Program
     private static void ModificaContatto(List<Contatto> rubrica)
     {
         var continua = true;
+
+        if (RubricaVuota(rubrica))
+        {
+            return; // Se la rubrica è vuota, termina il metodo senza fare ulteriori operazioni
+        }
+
         do
         {
             Console.WriteLine(
@@ -244,7 +253,7 @@ public static class Program
         switch (scelta) // Modifica del campo selezionato dall'utente 
         {
             case "N": // Modifica del nome del contatto 
-                Console.Write("Inserisci il nuovo nome: "); 
+                Console.Write("Inserisci il nuovo nome: ");
                 contattoDaModificare.Nome = Console.ReadLine() ?? "";
 
                 if (string.IsNullOrWhiteSpace(contattoDaModificare.Nome)) // Controllo che il nome non sia vuoto
@@ -264,10 +273,12 @@ public static class Program
 
                 break;
             case "T":
-                Console.Write("Inserisci il nuovo numero di telefono: "); // Modifica del numero di telefono del contatto
+                Console.Write(
+                    "Inserisci il nuovo numero di telefono: "); // Modifica del numero di telefono del contatto
                 contattoDaModificare.NumeroDiTelefono = Console.ReadLine() ?? "";
 
-                if (string.IsNullOrWhiteSpace(contattoDaModificare.NumeroDiTelefono)) // Controllo che il numero di telefono non sia vuoto
+                if (string.IsNullOrWhiteSpace(contattoDaModificare
+                        .NumeroDiTelefono)) // Controllo che il numero di telefono non sia vuoto
                 {
                     Console.WriteLine("\nNumero di telefono non valido.");
                 }
@@ -276,18 +287,34 @@ public static class Program
             case "A":
                 Console.Write("Inserisci il nuovo nome: ");
                 contattoDaModificare.Nome = Console.ReadLine() ?? "";
-                
+
                 Console.Write("Inserisci il nuovo cognome: ");
                 contattoDaModificare.Cognome = Console.ReadLine() ?? "";
-                
+
                 Console.Write("Inserisci il nuovo numero di telefono: ");
                 contattoDaModificare.NumeroDiTelefono = Console.ReadLine() ?? "";
-                
-                if (string.IsNullOrWhiteSpace(contattoDaModificare.Nome) || string.IsNullOrWhiteSpace(contattoDaModificare.Cognome) || string.IsNullOrWhiteSpace(contattoDaModificare.NumeroDiTelefono)) // Controllo che nessuno dei campi sia vuoto 
+
+                if (string.IsNullOrWhiteSpace(contattoDaModificare.Nome) ||
+                    string.IsNullOrWhiteSpace(contattoDaModificare.Cognome) ||
+                    string.IsNullOrWhiteSpace(contattoDaModificare
+                        .NumeroDiTelefono)) // Controllo che nessuno dei campi sia vuoto 
                 {
                     Console.WriteLine("\nUno o più campi non validi.");
                 }
+
                 break;
         }
+    }
+
+    private static bool RubricaVuota(List<Contatto> rubrica)
+    {
+        if (rubrica.Count == 0)
+        {
+            Console.WriteLine("La rubrica è vuota. Non ci sono contatti.");
+            Console.WriteLine("Premi un tasto per continuare...");
+            Console.ReadKey();
+            return true;
+        }
+        return false;
     }
 }
