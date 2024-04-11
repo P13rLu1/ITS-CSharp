@@ -117,7 +117,7 @@ public static class Program
             Console.Write("Inserisci il numero di telefono del contatto da rimuovere: ");
             var numeroDiTelefono = Console.ReadLine();
 
-            Contatto? contattoDaRimuovere = null;
+            Contatto? contattoDaRimuovere = null; // Inizializza contattoDaRimuovere a null per indicare che non è stato trovato alcun contatto con il numero di telefono specificato dall'utente all'inizio
             foreach (var contatto in rubrica) // Scansione di tutti i contatti nella rubrica
             {
                 if (contatto.NumeroDiTelefono ==
@@ -151,7 +151,9 @@ public static class Program
             }
 
             rubrica.Remove(contattoDaRimuovere); // Rimuove il contatto dalla rubrica 
-
+            Console.WriteLine("\nDi seguito la rubrica aggiornata: ");
+            VisualizzaContatto(rubrica);
+            
             Console.Write(
                 "Vuoi rimuovere un altro contatto? (S-s/N-n): "); // Richiesta di continuare con la rimozione di un altro contatto
             if (Console.ReadLine()?.ToUpper() == "N")
@@ -172,10 +174,14 @@ public static class Program
             return; // Se la rubrica è vuota, termina il metodo senza fare ulteriori operazioni
         }
 
+        var numeroContatto = 1; // Numero del primo contatto
+
         foreach (var contatto in rubrica) // Scansione di tutti i contatti nella rubrica e stampa di ciascuno di essi 
         {
+            Console.WriteLine($"Contatto {numeroContatto}:");
             Console.WriteLine(
                 $"Nome: {contatto.Nome} \nCognome: {contatto.Cognome} \nNumero di telefono: {contatto.NumeroDiTelefono} \n -----------------");
+            numeroContatto++; // Incrementa il numero del contatto
         }
 
         Console.WriteLine("\nPremi un tasto per continuare...");
