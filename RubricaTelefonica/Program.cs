@@ -306,8 +306,8 @@ public static class Program
 
                 break;
             case "A":
-                var inputErrato = true;
-                while (inputErrato)
+                var inputErrato = true; // Variabile per controllare che l'utente inserisca valori validi
+                do // Ciclo per permettere all'utente di inserire nuovi valori finché non sono validi 
                 {
                     Console.Write("\nInserisci il nuovo nome: ");
                     contattoDaModificare.Nome = Console.ReadLine() ?? "";
@@ -318,17 +318,17 @@ public static class Program
                     Console.Write("Inserisci il nuovo numero di telefono: ");
                     contattoDaModificare.NumeroDiTelefono = Console.ReadLine() ?? "";
 
-                    if (string.IsNullOrWhiteSpace(contattoDaModificare.Nome) || string.IsNullOrWhiteSpace(contattoDaModificare.Cognome) || string.IsNullOrWhiteSpace(contattoDaModificare.NumeroDiTelefono))
+                    if (string.IsNullOrWhiteSpace(contattoDaModificare.Nome) || string.IsNullOrWhiteSpace(contattoDaModificare.Cognome) || string.IsNullOrWhiteSpace(contattoDaModificare.NumeroDiTelefono)) // Controllo che i campi non siano vuoti 
                     {
                         Console.WriteLine("\nAlmeno uno dei campi non è valido. Riprova.");
                         Console.Write("Premi un tasto per continuare...");
                         Console.ReadKey();
                     }
-                    else
+                    else // Se i campi non sono vuoti, l'immissione è corretta e il ciclo termina 
                     {
                         inputErrato = false;
                     }
-                }
+                } while (inputErrato);
                 break;
         }
     }
