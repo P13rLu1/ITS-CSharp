@@ -149,6 +149,14 @@ public static class Program
 
     private static void VisualizzaContatto(List<Contatto> rubrica)
     {
+        if (rubrica.Count == 0) // Se la rubrica è vuota, stampa un messaggio e termina il metodo
+        {
+            Console.WriteLine("\nRubrica vuota.");
+            Console.WriteLine("Premi un tasto per continuare...");
+            Console.ReadKey();
+            return;
+        }
+        
         foreach (var contatto in rubrica) // Scansione di tutti i contatti nella rubrica e stampa di ciascuno di essi 
         {
             Console.WriteLine(
