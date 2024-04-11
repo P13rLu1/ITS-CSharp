@@ -75,8 +75,9 @@ public static class Program
                 Console.ReadKey();
                 return;
             }
-            
-            foreach (var contatto in rubrica) // Scansione di tutti i contatti nella rubrica per verificare che il numero di telefono non sia già presente visto che deve essere univoco
+
+            foreach (var contatto in
+                     rubrica) // Scansione di tutti i contatti nella rubrica per verificare che il numero di telefono non sia già presente visto che deve essere univoco
             {
                 if (contatto.NumeroDiTelefono == numeroDiTelefono)
                 {
