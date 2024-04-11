@@ -75,6 +75,17 @@ public static class Program
                 Console.ReadKey();
                 return;
             }
+            
+            foreach (var contatto in rubrica) // Scansione di tutti i contatti nella rubrica per verificare che il numero di telefono non sia già presente visto che deve essere univoco
+            {
+                if (contatto.NumeroDiTelefono == numeroDiTelefono)
+                {
+                    Console.WriteLine("\nQuesto numero di telefono è già presente nella rubrica.");
+                    Console.Write("Premi un tasto per continuare...");
+                    Console.ReadKey();
+                    return;
+                }
+            }
 
             rubrica.Add(new Contatto(nome, cognome, numeroDiTelefono)); // Aggiunta del contatto alla rubrica 
 
@@ -86,7 +97,7 @@ public static class Program
             }
         } while (continua);
 
-        Console.WriteLine("\nContatti aggiunto con successo!");
+        Console.WriteLine("\nContatti aggiunti con successo!");
         Console.WriteLine("Premi un tasto per continuare...");
         Console.ReadKey();
     }
