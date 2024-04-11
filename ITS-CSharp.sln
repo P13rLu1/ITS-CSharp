@@ -3,15 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "demo", "demo\demo.csproj", "{992FB50C-41C2-4B0B-B42F-728E0826158B}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "esercizio1", "esercizio1\esercizio1.csproj", "{A68BC914-B982-4D4D-81FE-AD0150F10FC8}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "calcolatrice", "calcolatrice\calcolatrice.csproj", "{03D41F27-C189-4877-9797-3244E53171B5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoList", "ToDoList\ToDoList.csproj", "{492CB115-B97B-4F32-A54F-4A870753DAD5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EsempioOggetti", "EsempioOggetti\EsempioOggetti.csproj", "{E57E5649-18E3-4B4A-B36F-60F546341B62}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RubricaTelefonica", "RubricaTelefonica\RubricaTelefonica.csproj", "{A3DAD309-F932-413A-A4A6-F97A53B04B34}"
 EndProject
@@ -21,14 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{992FB50C-41C2-4B0B-B42F-728E0826158B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{992FB50C-41C2-4B0B-B42F-728E0826158B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{992FB50C-41C2-4B0B-B42F-728E0826158B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{992FB50C-41C2-4B0B-B42F-728E0826158B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A68BC914-B982-4D4D-81FE-AD0150F10FC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A68BC914-B982-4D4D-81FE-AD0150F10FC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A68BC914-B982-4D4D-81FE-AD0150F10FC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A68BC914-B982-4D4D-81FE-AD0150F10FC8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{03D41F27-C189-4877-9797-3244E53171B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{03D41F27-C189-4877-9797-3244E53171B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03D41F27-C189-4877-9797-3244E53171B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -37,10 +23,6 @@ Global
 		{492CB115-B97B-4F32-A54F-4A870753DAD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{492CB115-B97B-4F32-A54F-4A870753DAD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{492CB115-B97B-4F32-A54F-4A870753DAD5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E57E5649-18E3-4B4A-B36F-60F546341B62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E57E5649-18E3-4B4A-B36F-60F546341B62}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E57E5649-18E3-4B4A-B36F-60F546341B62}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E57E5649-18E3-4B4A-B36F-60F546341B62}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A3DAD309-F932-413A-A4A6-F97A53B04B34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A3DAD309-F932-413A-A4A6-F97A53B04B34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3DAD309-F932-413A-A4A6-F97A53B04B34}.Release|Any CPU.ActiveCfg = Release|Any CPU
