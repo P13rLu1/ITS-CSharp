@@ -266,54 +266,69 @@ public static class Program
         {
             case "N": // Modifica del nome del contatto 
                 Console.Write("Inserisci il nuovo nome: ");
-                contattoDaModificare.Nome = Console.ReadLine() ?? "";
 
                 if (string.IsNullOrWhiteSpace(contattoDaModificare.Nome)) // Controllo che il nome non sia vuoto
                 {
                     Console.WriteLine("\nNome non valido.");
                 }
+                else
+                {
+                    contattoDaModificare.Nome = Console.ReadLine() ?? "";
+                }
 
                 break;
             case "C":
                 Console.Write("Inserisci il nuovo cognome: "); // Modifica del cognome del contatto
-                contattoDaModificare.Cognome = Console.ReadLine() ?? "";
-
+                
                 if (string.IsNullOrWhiteSpace(contattoDaModificare.Cognome)) // Controllo che il cognome non sia vuoto
                 {
                     Console.WriteLine("\nCognome non valido.");
+                }
+                else
+                {
+                    contattoDaModificare.Cognome = Console.ReadLine() ?? "";
                 }
 
                 break;
             case "T":
                 Console.Write(
                     "Inserisci il nuovo numero di telefono: "); // Modifica del numero di telefono del contatto
-                contattoDaModificare.NumeroDiTelefono = Console.ReadLine() ?? "";
 
                 if (string.IsNullOrWhiteSpace(contattoDaModificare
                         .NumeroDiTelefono)) // Controllo che il numero di telefono non sia vuoto
                 {
                     Console.WriteLine("\nNumero di telefono non valido.");
                 }
+                else
+                {
+                    contattoDaModificare.NumeroDiTelefono = Console.ReadLine() ?? "";
+                }
 
                 break;
             case "A":
-                Console.Write("Inserisci il nuovo nome: ");
-                contattoDaModificare.Nome = Console.ReadLine() ?? "";
-
-                Console.Write("Inserisci il nuovo cognome: ");
-                contattoDaModificare.Cognome = Console.ReadLine() ?? "";
-
-                Console.Write("Inserisci il nuovo numero di telefono: ");
-                contattoDaModificare.NumeroDiTelefono = Console.ReadLine() ?? "";
-
-                if (string.IsNullOrWhiteSpace(contattoDaModificare.Nome) ||
-                    string.IsNullOrWhiteSpace(contattoDaModificare.Cognome) ||
-                    string.IsNullOrWhiteSpace(contattoDaModificare
-                        .NumeroDiTelefono)) // Controllo che nessuno dei campi sia vuoto 
+                var inputErrato = true;
+                while (inputErrato)
                 {
-                    Console.WriteLine("\nUno o più campi non validi.");
-                }
+                    Console.Write("\nInserisci il nuovo nome: ");
+                    contattoDaModificare.Nome = Console.ReadLine() ?? "";
 
+                    Console.Write("Inserisci il nuovo cognome: ");
+                    contattoDaModificare.Cognome = Console.ReadLine() ?? "";
+
+                    Console.Write("Inserisci il nuovo numero di telefono: ");
+                    contattoDaModificare.NumeroDiTelefono = Console.ReadLine() ?? "";
+
+                    if (string.IsNullOrWhiteSpace(contattoDaModificare.Nome) || string.IsNullOrWhiteSpace(contattoDaModificare.Cognome) || string.IsNullOrWhiteSpace(contattoDaModificare.NumeroDiTelefono))
+                    {
+                        Console.WriteLine("\nAlmeno uno dei campi non è valido. Riprova.");
+                        Console.Write("Premi un tasto per continuare...");
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        inputErrato = false;
+                    }
+                }
                 break;
         }
     }
