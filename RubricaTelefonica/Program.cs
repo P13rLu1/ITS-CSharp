@@ -181,7 +181,7 @@ public static class Program
             Console.WriteLine($"Contatto {numeroContatto}:");
             Console.WriteLine(
                 $"Nome: {contatto.Nome} \nCognome: {contatto.Cognome} \nNumero di telefono: {contatto.NumeroDiTelefono} \n -----------------");
-            numeroContatto++; // Incrementa il numero del contatto
+            numeroContatto++; // Incremento del numero del contatto per il prossimo contatto
         }
 
         Console.WriteLine("\nPremi un tasto per continuare...");
