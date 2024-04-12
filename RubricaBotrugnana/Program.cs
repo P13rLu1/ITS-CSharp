@@ -1,4 +1,36 @@
-﻿namespace RubricaBotrugnana
+﻿//Creare una .NET Console App in C# che permetta la gestione di una rubrica. 
+
+// Ogni contatto in rubrica potrà avere:
+// - Nome (facoltativo);
+// - Cognome (facoltativo);
+// - Recapiti (di tipo cellulare, casa, ufficio, email personale ..., di cui almeno il cellulare è obbligatorio);
+// - Luogo di nascita (facoltativo);
+// - Luogo di residenza (facoltativo);
+// - Luogo di domicilio (facoltativo);
+// - Eta (intero che indica gli anni del contatto. PRO: usare la data di nascita con il tipo DateOnly o DateTime).
+//
+// Ogni recapito dovrà contenere:
+// - Tipo (facoltativo, "Cellulare", "Casa", "Ufficio", "Email personale" ...)
+// - Valore (obbligatorio, conterrà il numero di telefono o l'email).
+//
+//     Ogni luogo dovrà contenere:
+// - Indirizzo (facoltativo);
+// - Cap (facoltativo);
+// - Citta (obbligatorio);
+// - Provincia (obbligatorio);
+//
+// L'utente potrà eseguire le seguenti operazioni:
+// - Inserimento contatto in rubrica, chiedendo quali proprietà facoltative vuole definire;
+// - Modifica di un contatto esistente e di qualunque sua proprietà (chiedendo il suo numero di cellulare che deve essere univoco);
+// - Cancellazione di un contatto esistente (chiedendo il suo numero di cellulare che deve essere univoco);
+// - Visualizzazione dei contatti in rubrica e di tutte le loro proprietà (solo di quelle presenti);
+// - Visualizzazione dei contatti in rubrica con residenza in una città richiesta in input;
+// - Visualizzazione della media delle età dei contatti in rubrica;
+// - Visualizzazione dei contatti con il cognome passato in input;
+// - Uscita dal programma (ovviamente).
+//     Ricordarsi di gestire tutti i possibili casi d'errore e di separare il codice in diversi metodi atomici.
+
+namespace RubricaBotrugnana
 {
     internal class Program
     {
