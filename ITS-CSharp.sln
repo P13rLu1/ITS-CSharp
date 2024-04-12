@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoList", "ToDoList\ToDoLi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RubricaTelefonica", "RubricaTelefonica\RubricaTelefonica.csproj", "{A3DAD309-F932-413A-A4A6-F97A53B04B34}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RubricaBotrugnana", "RubricaBotrugnana\RubricaBotrugnana.csproj", "{3D2BC06E-1C52-480F-8CDA-F87B9511D722}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A3DAD309-F932-413A-A4A6-F97A53B04B34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3DAD309-F932-413A-A4A6-F97A53B04B34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3DAD309-F932-413A-A4A6-F97A53B04B34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D2BC06E-1C52-480F-8CDA-F87B9511D722}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D2BC06E-1C52-480F-8CDA-F87B9511D722}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D2BC06E-1C52-480F-8CDA-F87B9511D722}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D2BC06E-1C52-480F-8CDA-F87B9511D722}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
