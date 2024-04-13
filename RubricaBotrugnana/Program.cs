@@ -34,14 +34,14 @@ namespace RubricaBotrugnana
 {
     internal static class Program
     {
-        static void Main()
+        private static void Main()
         {
             // tutta la logica è in un metodo separato dal Main
             Console.WriteLine("Benvenuto nella tua rubrica!");
             Porcodio();
         }
 
-        static void Porcodio()
+        private static void Porcodio()
         {
             List<Contatto> rubrica = new List<Contatto>();
             string scelta;
@@ -145,7 +145,7 @@ namespace RubricaBotrugnana
             } while (scelta != "8");
         }
 
-        private static void InserimentoContatto(List<Contatto> rubrica)
+        private static void InserimentoContatto(List<Contatto> rubrica) // funzione per inserire un contatto in rubrica
         {
             string numero;
             do // chiedere all'utente il numero da inserire gestendo eventuali errori 
@@ -200,7 +200,7 @@ namespace RubricaBotrugnana
             } while (scelta != "5"); // finché l'utente non decide di uscire
 
             rubrica.Add(nuovoContatto); // aggiungere il contatto alla rubrica 
-        }
+        } 
 
         private static void
             InserimentoRecapito(
