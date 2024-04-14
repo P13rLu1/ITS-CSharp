@@ -10,9 +10,9 @@
             this.Provincia = provincia;
         }
 
-        internal string Indirizzo { get; set; } = "";
-        internal string Cap { get; set; } = "";
-        internal string Citta { get; set; } = "";
-        internal string Provincia { get; set; } = "";
+        internal string Indirizzo { get; set; }
+        internal string Cap { get; set; }
+        internal string Citta { get; set; }
+        internal string Provincia { get; set; }
     }
 }

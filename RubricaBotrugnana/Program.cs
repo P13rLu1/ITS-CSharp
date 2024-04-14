@@ -41,7 +41,7 @@ namespace RubricaBotrugnana
             Porcodio();
         }
 
-        private static void Porcodio()
+        private static void Porcodio() // funzione per lo switch case del menu
         {
             List<Contatto> rubrica = new List<Contatto>();
             string scelta;
@@ -60,7 +60,7 @@ namespace RubricaBotrugnana
                         Console.WriteLine("\nModifica di un contatto esistente");
                         if (rubrica.Count != 0)
                         {
-                            // ModificaContatto(rubrica); DOPO (Forse)
+                            ModificaContatto(rubrica);
                         }
                         else
                         {
@@ -157,6 +157,23 @@ namespace RubricaBotrugnana
                 {
                     Console.WriteLine("Il numero non può essere vuoto!");
                 }
+
+                foreach (var contatto in rubrica) //ciclo per controllare che il numero sia unico
+                {
+                    foreach (var recapito in contatto.Recapiti) //ciclo per controllare che il numero sia unico
+                    {
+                        if (recapito.Valore != numero)
+                            continue; //se il numero è già presente in rubrica visualizza un messaggio di errore
+                        Console.WriteLine("Il numero è già presente in rubrica!");
+                        numero = "";
+                        break;
+                    }
+
+                    if (numero == "") //se il numero è già presente in rubrica visualizza un messaggio di errore
+                    {
+                        break;
+                    }
+                }
             } while (string.IsNullOrWhiteSpace(numero)); // finché l'utente non inserisce un numero valido
 
             Console.Write(
@@ -167,7 +184,7 @@ namespace RubricaBotrugnana
                 "Inserisci il cognome (facoltativo): "); // chiedere all'utente il nome, il cognome e il numero da inserire gestendo eventuali errori
             var cognome = Console.ReadLine() ?? "";
 
-            Contatto
+            var
                 nuovoContatto =
                     new Contatto(numero, nome, cognome); // creare un nuovo contatto con i dati inseriti dall'utente
 
@@ -200,7 +217,7 @@ namespace RubricaBotrugnana
             } while (scelta != "5"); // finché l'utente non decide di uscire
 
             rubrica.Add(nuovoContatto); // aggiungere il contatto alla rubrica 
-        } 
+        }
 
         private static void
             InserimentoRecapito(
@@ -222,7 +239,7 @@ namespace RubricaBotrugnana
                 }
             } while (string.IsNullOrWhiteSpace(valore)); // finché l'utente non inserisce un valore valido
 
-            Recapito
+            var
                 nuovoRecapito = new Recapito(valore, tipo); // creare un nuovo recapito con i dati inseriti dall'utente
             contatto.Recapiti.Add(nuovoRecapito); // aggiungere il recapito al contatto
         }
@@ -258,7 +275,7 @@ namespace RubricaBotrugnana
                 }
             } while (string.IsNullOrWhiteSpace(provincia));
 
-            Luogo nuovoLuogo =
+            var nuovoLuogo =
                 new Luogo(citta, provincia, indirizzo, cap); // crea un nuovo luogo con i dati inseriti dall'utente
             switch (tipo) // inserisce il luogo nel contatto in base al tipo
             {
@@ -276,11 +293,11 @@ namespace RubricaBotrugnana
 
         private static void VisualizzazioneContatti(List<Contatto> rubrica) // visualizzare i contatti in rubrica
         {
-            foreach (Contatto contatto in rubrica) // visualizzare i contatti in rubrica
+            foreach (var contatto in rubrica) // visualizzare i contatti in rubrica
             {
                 Console.WriteLine($"Nome: {contatto.Nome}"); // visualizzare il nome del contatto
                 Console.WriteLine($"Cognome: {contatto.Cognome}"); // visualizzare il cognome del contatto
-                foreach (Recapito recapito in contatto.Recapiti) //ciclo per visualizzare le informazioni dei recapiti
+                foreach (var recapito in contatto.Recapiti) //ciclo per visualizzare le informazioni dei recapiti
                 {
                     Console.WriteLine(
                         $"{recapito.Tipo}: {recapito.Valore}"); // visualizzare il tipo e il valore del recapito
@@ -363,7 +380,8 @@ namespace RubricaBotrugnana
             string citta;
             do //ciclo per chiedere la città da cercare
             {
-                Console.Write("Inserisci la città di residenza da cercare: "); // chiedere all'utente la città da cercare
+                Console.Write(
+                    "Inserisci la città di residenza da cercare: "); // chiedere all'utente la città da cercare
                 citta = Console.ReadLine() ?? "";
                 if (string.IsNullOrWhiteSpace(citta))
                 {
@@ -371,7 +389,7 @@ namespace RubricaBotrugnana
                 }
             } while (string.IsNullOrWhiteSpace(citta)); // finché l'utente non inserisce una città valida
 
-            var contattoTrovato = false; 
+            var contattoTrovato = false;
             foreach (var contatto in rubrica) //ciclo per cercare i contatti con residenza nella città richiesta
             {
                 if (contatto.LuogoResidenza?.Citta == citta) //se il contatto ha residenza nella città richiesta
@@ -381,7 +399,8 @@ namespace RubricaBotrugnana
                     Console.WriteLine($"Cognome: {contatto.Cognome}"); //visualizza il cognome del contatto
                     foreach (Recapito recapito in contatto.Recapiti)
                     {
-                        Console.WriteLine($"{recapito.Tipo}: {recapito.Valore}"); //visualizza il tipo e il valore del recapito
+                        Console.WriteLine(
+                            $"{recapito.Tipo}: {recapito.Valore}"); //visualizza il tipo e il valore del recapito
                     }
 
                     if (contatto.LuogoNascita != null)
@@ -408,16 +427,19 @@ namespace RubricaBotrugnana
 
             if (!contattoTrovato)
             {
-                Console.WriteLine("Nessun contatto trovato!"); //se nessun contatto è stato trovato visualizza un messaggio di errore
+                Console.WriteLine(
+                    "Nessun contatto trovato!"); //se nessun contatto è stato trovato visualizza un messaggio di errore
             }
 
             Console.ReadKey();
         }
-        
-        private static void VisualizzazioneContattiPerCognome(List<Contatto> rubrica) //funzione per visualizzare i contatti con un cognome richiesto
+
+        private static void
+            VisualizzazioneContattiPerCognome(
+                List<Contatto> rubrica) //funzione per visualizzare i contatti con un cognome richiesto
         {
             string cognome;
-            do 
+            do
             {
                 Console.Write("Inserisci il cognome da cercare: "); //chiede il cognome da cercare
                 cognome = Console.ReadLine() ?? "";
@@ -425,17 +447,20 @@ namespace RubricaBotrugnana
                 {
                     Console.WriteLine("Il cognome non può essere vuoto!");
                 }
-            } while (string.IsNullOrWhiteSpace(cognome)); // finché l'utente non inserisce un cognome valido il ciclo continua
+            } while
+                (string.IsNullOrWhiteSpace(
+                    cognome)); // finché l'utente non inserisce un cognome valido il ciclo continua
 
             var contattoTrovato = false; //inizializzazione del contatto trovato
             foreach (var contatto in rubrica)
             {
-                if (contatto.Cognome == cognome) //se il cognome del contatto è uguale al cognome richiesto visualizza le informazioni del contatto
+                if (contatto.Cognome ==
+                    cognome) //se il cognome del contatto è uguale al cognome richiesto visualizza le informazioni del contatto
                 {
                     contattoTrovato = true;
                     Console.WriteLine($"Nome: {contatto.Nome}"); //visualizza il nome del contatto
                     Console.WriteLine($"Cognome: {contatto.Cognome}"); //visualizza il cognome del contatto
-                    foreach (Recapito recapito in contatto.Recapiti) 
+                    foreach (Recapito recapito in contatto.Recapiti)
                     {
                         Console.WriteLine($"{recapito.Tipo}: {recapito.Valore}");
                     }
@@ -466,6 +491,151 @@ namespace RubricaBotrugnana
             {
                 Console.WriteLine("Nessun contatto trovato!");
             }
+
+            Console.ReadKey();
+        }
+
+        private static void ModificaContatto(List<Contatto> rubrica) //funzione per modificare un contatto
+        {
+            string numero;
+            do //ciclo per chiedere il numero del contatto da modificare
+            {
+                Console.Write(
+                    "Inserisci il numero di cellulare del contatto da modificare: "); //chiede all'utente il numero da modificare
+                numero = Console.ReadLine() ?? "";
+                if (string.IsNullOrWhiteSpace(numero)) //se il numero è vuoto visualizza un messaggio di errore
+                {
+                    Console.WriteLine("Il numero non può essere vuoto!");
+                }
+            } while (string.IsNullOrWhiteSpace(numero)); // finché l'utente non inserisce un numero valido
+
+            Contatto? contattoDaModificare = null; //inizializzazione del contatto da modificare
+            foreach (var contatto in rubrica)
+            {
+                foreach (var recapito in contatto.Recapiti)
+                {
+                    if (recapito.Valore == numero) //se il recapito è uguale al numero da modificare
+                    {
+                        contattoDaModificare = contatto; //il contatto da modificare è il contatto corrente
+                        break;
+                    }
+                }
+
+                if (contattoDaModificare != null) //se il contatto da modificare è stato trovato
+                {
+                    break; //esci dal ciclo
+                }
+            }
+
+            if (contattoDaModificare != null) //se il contatto da modificare è stato trovato e non è nullo
+            {
+                string scelta; //chiedere all'utente cosa vuole modificare
+                do
+                {
+                    Console.Write(
+                        "1. Modifica il nome\n2. Modifica il cognome\n3. Modifica un recapito\n4. Modifica il luogo di nascita\n5. Modifica il luogo di residenza\n6. Modifica il luogo di domicilio\n7. Esci\nScegli un'opzione: ");
+                    scelta = Console.ReadLine() ?? "";
+                    switch (scelta)
+                    {
+                        case "1":
+                            Console.WriteLine("\nIl nome attuale è: " +
+                                              contattoDaModificare.Nome); //visualizza il nome attuale
+                            Console.Write(
+                                "Inserisci il nuovo nome: "); //chiede all'utente il nuovo nome e lo modifica
+                            contattoDaModificare.Nome = Console.ReadLine() ?? "";
+                            break;
+                        case "2":
+                            Console.WriteLine("\nIl cognome attuale è: " +
+                                              contattoDaModificare.Cognome); //visualizza il cognome attuale
+                            Console.Write(
+                                "Inserisci il nuovo cognome: "); //chiede all'utente il nuovo cognome e lo modifica
+                            contattoDaModificare.Cognome = Console.ReadLine() ?? "";
+                            break;
+                        case "3":
+                            ModificaRecapito(contattoDaModificare); //link al metodo ModificaRecapito
+                            break;
+                        case "4":
+                            InserimentoLuogo(contattoDaModificare, "nascita"); //link al metodo InserimentoLuogo
+                            break;
+                        case "5":
+                            InserimentoLuogo(contattoDaModificare, "residenza"); //link al metodo InserimentoLuogo
+                            break;
+                        case "6":
+                            InserimentoLuogo(contattoDaModificare, "domicilio"); //link al metodo InserimentoLuogo
+                            break;
+                        case "7":
+                            break;
+                        default:
+                            Console.WriteLine("Scelta non valida!");
+                            break;
+                    }
+                } while (scelta != "7"); // finché l'utente non decide di uscire
+
+                Console.WriteLine("Contatto modificato con successo!");
+            }
+            else
+            {
+                Console.WriteLine(
+                    "Contatto non trovato!"); //se il contatto da modificare non è stato trovato visualizza un messaggio di errore
+            }
+        }
+
+        private static void ModificaRecapito(Contatto contatto) //funzione per modificare un recapito
+        {
+            Console.WriteLine("\nDi seguito i recapiti del contatto:");
+            foreach (var recapito in contatto.Recapiti)
+            {
+                Console.WriteLine($"{recapito.Tipo}: {recapito.Valore}");
+            }
+
+            string tipo;
+            do //ciclo per chiedere il tipo del recapito da modificare
+            {
+                Console.Write(
+                    "Inserisci il tipo del recapito da modificare: "); //chiede all'utente il tipo del recapito da modificare
+                tipo = Console.ReadLine() ?? "";
+                if (string.IsNullOrWhiteSpace(tipo)) //se il tipo è vuoto visualizza un messaggio di errore
+                {
+                    Console.WriteLine("Il tipo non può essere vuoto!");
+                }
+            } while (string.IsNullOrWhiteSpace(tipo)); // finché l'utente non inserisce un tipo valido
+
+            Recapito? recapitoDaModificare = null; //inizializzazione del recapito da modificare
+            foreach (var recapito in contatto.Recapiti)
+            {
+                if (recapito.Tipo == tipo) //se il tipo del recapito è uguale al tipo da modificare
+                {
+                    recapitoDaModificare = recapito; //il recapito da modificare è il recapito corrente
+                    break;
+                }
+            }
+            
+            if (recapitoDaModificare == null)
+            {
+                Console.WriteLine("Recapito non trovato!");
+                return;
+            }
+
+            Console.Write("Cosa vuoi modificare?\n1. Tipo\n2. Valore\nScegli un'opzione:");
+            var scelta = Console.ReadLine() ?? "";
+            switch (scelta)
+            {
+                case "1":
+                    Console.WriteLine("\nIl tipo attuale è: " + recapitoDaModificare.Tipo);
+                    Console.Write("Inserisci il nuovo tipo: ");
+                    recapitoDaModificare.Tipo = Console.ReadLine() ?? "";
+                    break;
+                case "2":
+                    Console.WriteLine("\nIl valore attuale è: " + recapitoDaModificare.Valore);
+                    Console.Write("Inserisci il nuovo valore: ");
+                    recapitoDaModificare.Valore = Console.ReadLine() ?? "";
+                    break;
+                default:
+                    Console.WriteLine("Scelta non valida!");
+                    break;
+            }
+
+            Console.WriteLine("Recapito modificato con successo!");
 
             Console.ReadKey();
         }
