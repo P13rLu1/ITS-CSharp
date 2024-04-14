@@ -21,6 +21,9 @@
         internal Luogo? LuogoResidenza { get; set; }
         internal Luogo? LuogoDomicilio { get; set; }
 
+        internal DateTime DataNascita { get; set; }
+        internal int Eta { get; set; }
+
         internal List<Recapito> Recapiti { get; set; }
     }
 }

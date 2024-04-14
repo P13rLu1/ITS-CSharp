@@ -113,7 +113,7 @@ namespace RubricaBotrugnana
                         Console.WriteLine("\nVisualizzazione della media delle età dei contatti in rubrica");
                         if (rubrica.Count != 0)
                         {
-                            // VisualizzazioneMediaEta(rubrica); DOPO (Forse)
+                            VisualizzazioneMediaEta(rubrica);
                         }
                         else
                         {
@@ -215,6 +215,8 @@ namespace RubricaBotrugnana
                         break;
                 }
             } while (scelta != "5"); // finché l'utente non decide di uscire
+
+            InserimentoEta(nuovoContatto); //link al metodo InserimentoEta
 
             rubrica.Add(nuovoContatto); // aggiungere il contatto alla rubrica 
         }
@@ -609,7 +611,7 @@ namespace RubricaBotrugnana
                     break;
                 }
             }
-            
+
             if (recapitoDaModificare == null)
             {
                 Console.WriteLine("Recapito non trovato!");
@@ -637,6 +639,76 @@ namespace RubricaBotrugnana
 
             Console.WriteLine("Recapito modificato con successo!");
 
+            Console.ReadKey();
+        }
+
+        private static void InserimentoEta(Contatto contatto) //funzione per inserire l'età di un contatto
+        {
+            string input;
+            int anno;
+            int mese;
+            int giorno;
+
+            Console.WriteLine("\nInserimento data di nascita:");
+            do
+            {
+                //ciclo per chiedere l'anno di nascita
+                Console.Write("Inserisci anno: ");
+                input = Console.ReadLine() ?? "";
+            } while (!int.TryParse(input, out anno) || anno < 1); // finché l'utente non inserisce un anno valido
+
+            do
+            {
+                //ciclo per chiedere il mese di nascita
+                Console.Write("Inserisci mese: ");
+                input = Console.ReadLine() ?? "";
+            } while (!int.TryParse(input, out mese) || mese < 1 ||
+                     mese > 12); // finché l'utente non inserisce un mese valido
+
+            do
+            {
+                //ciclo per chiedere il giorno di nascita
+                Console.Write("Inserisci giorno: ");
+                input = Console.ReadLine() ?? "";
+                if (!int.TryParse(input, out giorno) || giorno < 1 ||
+                    giorno > DateTime.DaysInMonth(anno,
+                        mese)) //se il giorno non è valido per il mese specificato visualizza un messaggio di errore
+                {
+                    Console.WriteLine("Giorno non valido per il mese specificato. Riprova.");
+                }
+            } while
+                (giorno < 1 ||
+                 giorno > DateTime.DaysInMonth(anno,
+                     mese)); // finché l'utente non inserisce un giorno valido per il mese specificato
+
+            contatto.DataNascita = new DateTime(anno, mese, giorno);
+            contatto.Eta = CalcolaEta(contatto.DataNascita);
+        }
+
+        private static int CalcolaEta(DateTime dataNascita) //funzione per calcolare l'età di un contatto
+        {
+            DateTime oggi = DateTime.Today; //data odierna per calcolare l'età
+            int eta = oggi.Year - dataNascita.Year; //calcolo dell'età del contatto
+            if (oggi < dataNascita.AddYears(eta)) //se l'età calcolata è maggiore di quella effettiva del contatto decrementa l'età
+            {
+                eta--;
+            }
+
+            return eta; //restituisce l'età calcolata
+        }
+
+        private static void
+            VisualizzazioneMediaEta(
+                List<Contatto> rubrica) //funzione per visualizzare la media delle età dei contatti in rubrica
+        {
+            double sommaEta = 0; //inizializzazione della somma delle età
+            foreach (var contatto in rubrica) //ciclo per sommare le età dei contatti
+            {
+                sommaEta += contatto.Eta; // Utilizza l'età del contatto
+            }
+
+            double mediaEta = sommaEta / rubrica.Count;
+            Console.WriteLine($"La media delle età dei contatti in rubrica è: {mediaEta:N1}"); //visualizza la media delle età dei contatti in rubrica con una cifra decimale
             Console.ReadKey();
         }
     }
