@@ -43,7 +43,7 @@ namespace RubricaBotrugnana
 
         private static void Porcodio() // funzione per lo switch case del menu
         {
-            List<Contatto> rubrica = new List<Contatto>();
+            List<Contatto> rubrica = new List<Contatto>(); // creare una lista di contatti per la rubrica
             string scelta;
             do
             {
@@ -297,8 +297,8 @@ namespace RubricaBotrugnana
         {
             foreach (var contatto in rubrica) // visualizzare i contatti in rubrica
             {
-                Console.WriteLine($"Nome: {contatto.Nome}"); // visualizzare il nome del contatto
-                Console.WriteLine($"Cognome: {contatto.Cognome}"); // visualizzare il cognome del contatto
+                Console.WriteLine(
+                    $"Nome: {contatto.Nome}\nCognome: {contatto.Cognome}\nData di nascita: {contatto.DataNascita:dd/MM/yyyy}\nEtà: {contatto.Eta}"); // visualizzare il nome del contatto e il cognome del contatto e la data di nascita e l'età del contatto
                 foreach (var recapito in contatto.Recapiti) //ciclo per visualizzare le informazioni dei recapiti
                 {
                     Console.WriteLine(
@@ -360,9 +360,10 @@ namespace RubricaBotrugnana
                     break; //esci dal ciclo
                 }
             }
-
+            
             if (contattoDaCancellare != null) //se il contatto da cancellare è stato trovato e non è nullo 
             {
+                Console.WriteLine($"\nHo trovato il contatto {contattoDaCancellare.Nome} {contattoDaCancellare.Cognome}");
                 rubrica.Remove(contattoDaCancellare); //rimuovi il contatto dalla rubrica
                 Console.WriteLine("Contatto cancellato con successo!");
             }
@@ -689,7 +690,8 @@ namespace RubricaBotrugnana
         {
             DateTime oggi = DateTime.Today; //data odierna per calcolare l'età
             int eta = oggi.Year - dataNascita.Year; //calcolo dell'età del contatto
-            if (oggi < dataNascita.AddYears(eta)) //se l'età calcolata è maggiore di quella effettiva del contatto decrementa l'età
+            if (oggi < dataNascita
+                    .AddYears(eta)) //se l'età calcolata è maggiore di quella effettiva del contatto decrementa l'età
             {
                 eta--;
             }
@@ -708,7 +710,8 @@ namespace RubricaBotrugnana
             }
 
             double mediaEta = sommaEta / rubrica.Count;
-            Console.WriteLine($"La media delle età dei contatti in rubrica è: {mediaEta:N1}"); //visualizza la media delle età dei contatti in rubrica con una cifra decimale
+            Console.WriteLine(
+                $"La media delle età dei contatti in rubrica è: {mediaEta:N1}"); //visualizza la media delle età dei contatti in rubrica con una cifra decimale
             Console.ReadKey();
         }
     }
