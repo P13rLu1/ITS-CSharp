@@ -360,10 +360,11 @@ namespace RubricaBotrugnana
                     break; //esci dal ciclo
                 }
             }
-            
+
             if (contattoDaCancellare != null) //se il contatto da cancellare è stato trovato e non è nullo 
             {
-                Console.WriteLine($"\nHo trovato il contatto {contattoDaCancellare.Nome} {contattoDaCancellare.Cognome}");
+                Console.WriteLine(
+                    $"\nHo trovato il contatto {contattoDaCancellare.Nome} {contattoDaCancellare.Cognome}");
                 rubrica.Remove(contattoDaCancellare); //rimuovi il contatto dalla rubrica
                 Console.WriteLine("Contatto cancellato con successo!");
             }
@@ -376,62 +377,36 @@ namespace RubricaBotrugnana
             Console.ReadKey();
         }
 
-        private static void
-            VisualizzazioneContattiPerCittaResidenza(
-                List<Contatto> rubrica) //funzione per visualizzare i contatti con residenza in una città richiesta
+        private static void VisualizzazioneContattiPerCittaResidenza(List<Contatto> rubrica)
         {
             string citta;
-            do //ciclo per chiedere la città da cercare
+            do
             {
-                Console.Write(
-                    "Inserisci la città di residenza da cercare: "); // chiedere all'utente la città da cercare
+                Console.Write("Inserisci la città di residenza da cercare: ");
                 citta = Console.ReadLine() ?? "";
                 if (string.IsNullOrWhiteSpace(citta))
                 {
                     Console.WriteLine("La città non può essere vuota!");
                 }
-            } while (string.IsNullOrWhiteSpace(citta)); // finché l'utente non inserisce una città valida
+            } while (string.IsNullOrWhiteSpace(citta));
 
-            var contattoTrovato = false;
-            foreach (var contatto in rubrica) //ciclo per cercare i contatti con residenza nella città richiesta
+            List<Contatto> contattiTrovati = new List<Contatto>();
+
+            foreach (var contatto in rubrica)
             {
-                if (contatto.LuogoResidenza?.Citta == citta) //se il contatto ha residenza nella città richiesta
+                if (contatto.LuogoResidenza?.Citta == citta)
                 {
-                    contattoTrovato = true; //il contatto è stato trovato
-                    Console.WriteLine($"Nome: {contatto.Nome}"); //visualizza il nome del contatto
-                    Console.WriteLine($"Cognome: {contatto.Cognome}"); //visualizza il cognome del contatto
-                    foreach (Recapito recapito in contatto.Recapiti)
-                    {
-                        Console.WriteLine(
-                            $"{recapito.Tipo}: {recapito.Valore}"); //visualizza il tipo e il valore del recapito
-                    }
-
-                    if (contatto.LuogoNascita != null)
-                    {
-                        Console.WriteLine(
-                            $"Luogo di nascita: {contatto.LuogoNascita.Indirizzo} {contatto.LuogoNascita.Cap} {contatto.LuogoNascita.Citta} ({contatto.LuogoNascita.Provincia})"); //visualizza il luogo di nascita se presente
-                    }
-
-                    if (contatto.LuogoResidenza != null)
-                    {
-                        Console.WriteLine(
-                            $"Luogo di residenza: {contatto.LuogoResidenza.Indirizzo} {contatto.LuogoResidenza.Cap} {contatto.LuogoResidenza.Citta} ({contatto.LuogoResidenza.Provincia})"); //visualizza il luogo di residenza se presente
-                    }
-
-                    if (contatto.LuogoDomicilio != null)
-                    {
-                        Console.WriteLine(
-                            $"Luogo di domicilio: {contatto.LuogoDomicilio.Indirizzo} {contatto.LuogoDomicilio.Cap} {contatto.LuogoDomicilio.Citta} ({contatto.LuogoDomicilio.Provincia})"); //visualizza il luogo di domicilio se presente
-                    }
-
-                    Console.WriteLine("-----------------------------");
+                    contattiTrovati.Add(contatto);
                 }
             }
 
-            if (!contattoTrovato)
+            if (contattiTrovati.Count > 0)
             {
-                Console.WriteLine(
-                    "Nessun contatto trovato!"); //se nessun contatto è stato trovato visualizza un messaggio di errore
+                VisualizzazioneContatti(contattiTrovati);
+            }
+            else
+            {
+                Console.WriteLine("Nessun contatto trovato!");
             }
 
             Console.ReadKey();
@@ -454,43 +429,21 @@ namespace RubricaBotrugnana
                 (string.IsNullOrWhiteSpace(
                     cognome)); // finché l'utente non inserisce un cognome valido il ciclo continua
 
-            var contattoTrovato = false; //inizializzazione del contatto trovato
+            List<Contatto> contattiTrovati = new List<Contatto>();
+
             foreach (var contatto in rubrica)
             {
-                if (contatto.Cognome ==
-                    cognome) //se il cognome del contatto è uguale al cognome richiesto visualizza le informazioni del contatto
+                if (contatto.Cognome == cognome)
                 {
-                    contattoTrovato = true;
-                    Console.WriteLine($"Nome: {contatto.Nome}"); //visualizza il nome del contatto
-                    Console.WriteLine($"Cognome: {contatto.Cognome}"); //visualizza il cognome del contatto
-                    foreach (Recapito recapito in contatto.Recapiti)
-                    {
-                        Console.WriteLine($"{recapito.Tipo}: {recapito.Valore}");
-                    }
-
-                    if (contatto.LuogoNascita != null)
-                    {
-                        Console.WriteLine(
-                            $"Luogo di nascita: {contatto.LuogoNascita.Indirizzo} {contatto.LuogoNascita.Cap} {contatto.LuogoNascita.Citta} ({contatto.LuogoNascita.Provincia})");
-                    }
-
-                    if (contatto.LuogoResidenza != null)
-                    {
-                        Console.WriteLine(
-                            $"Luogo di residenza: {contatto.LuogoResidenza.Indirizzo} {contatto.LuogoResidenza.Cap} {contatto.LuogoResidenza.Citta} ({contatto.LuogoResidenza.Provincia})");
-                    }
-
-                    if (contatto.LuogoDomicilio != null)
-                    {
-                        Console.WriteLine(
-                            $"Luogo di domicilio: {contatto.LuogoDomicilio.Indirizzo} {contatto.LuogoDomicilio.Cap} {contatto.LuogoDomicilio.Citta} ({contatto.LuogoDomicilio.Provincia})");
-                    }
-
-                    Console.WriteLine("-----------------------------");
+                    contattiTrovati.Add(contatto);
                 }
             }
 
-            if (!contattoTrovato) //se nessun contatto è stato trovato visualizza un messaggio di errore
+            if (contattiTrovati.Count > 0)
+            {
+                VisualizzazioneContatti(contattiTrovati);
+            }
+            else
             {
                 Console.WriteLine("Nessun contatto trovato!");
             }
@@ -706,7 +659,7 @@ namespace RubricaBotrugnana
             double sommaEta = 0; //inizializzazione della somma delle età
             foreach (var contatto in rubrica) //ciclo per sommare le età dei contatti
             {
-                sommaEta += contatto.Eta; // Utilizza l'età del contatto
+                sommaEta += contatto.Eta; // Utilizza l'età del contatto 
             }
 
             double mediaEta = sommaEta / rubrica.Count;
