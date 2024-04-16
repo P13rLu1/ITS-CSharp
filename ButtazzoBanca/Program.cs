@@ -47,7 +47,7 @@ public static class Program
                     Selezione();
                     break;
             }
-        } while (scelta != "4");
+        } while (scelta != "5");
     }
 
     private static void CreaConto(List<Conto> contiCorrenti)
@@ -376,7 +376,14 @@ public static class Program
             {
                 if (movimento.Data.ToString("dd/MM/yyyy") == data)
                 {
-                    totale += movimento.Importo;
+                    if (movimento.Tipo == "Deposito")
+                    {
+                        totale += movimento.Importo;
+                    }
+                    else if (movimento.Tipo == "Prelievo")
+                    {
+                        totale -= movimento.Importo;
+                    }
                 }
             }
         }
