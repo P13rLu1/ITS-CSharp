@@ -121,7 +121,7 @@ public static class Program
         Console.WriteLine($"Il codice del conto corrente é: {codiceConto}, ricordalo!");
         Console.WriteLine($"Il pin del conto corrente é: {pin}, ricordalo!");
 
-        Console.ReadKey();
+        PremiUnTastoPerContinuare();
 
         Console.WriteLine("Conto creato con successo!");
     }
@@ -233,14 +233,14 @@ public static class Program
 
         BenvenutoContatto(conto);
 
-        Console.ReadKey();
+        PremiUnTastoPerContinuare();
 
         string scelta;
         decimal saldo = 0;
         do
         {
             Console.Write(
-                "\nCosa Vuoi Fare?\n1. Effettuare un deposito\n2. Effettuare un prelievo\n3. Visualizzare i movimenti\n4. Visualizza il tuo saldo\n5. Esci\nScegli un'opzione: ");
+                "\nCosa Vuoi Fare?\n1. Effettuare un deposito\n2. Effettuare un prelievo\n3. Visualizzare i movimenti\n4. Visualizza il tuo saldo\n5. Esci dal sottomenu\nScegli un'opzione: ");
             scelta = Console.ReadLine() ?? "";
             switch (scelta)
             {
@@ -271,7 +271,7 @@ public static class Program
                     break;
             }
 
-            Console.ReadKey();
+            PremiUnTastoPerContinuare();
         } while (scelta != "5");
     }
 
@@ -307,7 +307,6 @@ public static class Program
             {
                 Console.Write("Inserisci l'importo del prelievo: ");
                 importoPrelievo = decimal.Parse(Console.ReadLine() ?? "");
-                conto.Movimenti.Add(new Movimento(importoPrelievo, "Prelievo"));
                 if ((saldo - importoPrelievo) < 0)
                 {
                     Console.WriteLine("Non puoi prelevare più di quanto hai sul conto!");
@@ -315,6 +314,7 @@ public static class Program
                 else if ((saldo - importoPrelievo) >= 0)
                 {
                     saldo -= importoPrelievo;
+                    conto.Movimenti.Add(new Movimento(importoPrelievo, "Prelievo"));
                     Console.WriteLine(
                         $"Hai prelevato {importoPrelievo} euro con successo! e il tuo saldo è {saldo} euro");
                 }
@@ -333,7 +333,7 @@ public static class Program
             } while (importoDeposito <= 0);
         }
     }
-    
+
     private static void TotaleDenaroInGiacenza(List<Conto> contiCorrenti)
     {
         decimal totale = 0;
@@ -353,9 +353,9 @@ public static class Program
         }
 
         Console.WriteLine($"Il totale in giacenza dei conti correnti è {totale} euro");
-        Console.ReadKey();
+        PremiUnTastoPerContinuare();
     }
-    
+
     private static void TotaleDenaroCertaData(List<Conto> contiCorrenti)
     {
         string data;
@@ -368,7 +368,7 @@ public static class Program
                 Console.WriteLine("La data non può essere vuota!");
             }
         } while (string.IsNullOrWhiteSpace(data));
-        
+
         decimal totale = 0;
         foreach (Conto conto in contiCorrenti)
         {
@@ -389,6 +389,12 @@ public static class Program
         }
 
         Console.WriteLine($"Il totale dei movimenti in data {data} è {totale} euro");
+        PremiUnTastoPerContinuare();
+    }
+
+    private static void PremiUnTastoPerContinuare()
+    {
+        Console.WriteLine("Premi un tasto per continuare...");
         Console.ReadKey();
     }
 }
