@@ -224,7 +224,15 @@ public static class Program
             }
         } while (string.IsNullOrWhiteSpace(pin) || pin.Length != 5);
 
-        Conto? conto = contiCorrenti.Find(c => c.CodiceConto == codiceConto && c.Pin == pin);
+        Conto? conto = null;
+        foreach (var contoCorrente in contiCorrenti)
+        {
+            if (contoCorrente.CodiceConto == codiceConto && contoCorrente.Pin == pin)
+            {
+                conto = contoCorrente;
+                break;
+            }
+        }
         if (conto == null)
         {
             Console.WriteLine("Conto non trovato!");
