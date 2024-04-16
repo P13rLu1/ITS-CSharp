@@ -305,8 +305,15 @@ public static class Program
             decimal importoPrelievo;
             do
             {
-                Console.Write("Inserisci l'importo del prelievo: ");
-                importoPrelievo = decimal.Parse(Console.ReadLine() ?? "");
+                do
+                {
+                    Console.Write("Inserisci l'importo del prelievo: ");
+                    importoPrelievo = decimal.TryParse(Console.ReadLine(), out decimal result) ? result : 0;
+                    if (importoPrelievo <= 0)
+                    {
+                        Console.WriteLine("L'importo del prelievo deve essere maggiore di 0!");
+                    }
+                } while (importoPrelievo <= 0);
                 if ((saldo - importoPrelievo) < 0)
                 {
                     Console.WriteLine("Non puoi prelevare più di quanto hai sul conto!");
@@ -325,8 +332,15 @@ public static class Program
             decimal importoDeposito;
             do
             {
-                Console.Write("Inserisci l'importo del deposito: ");
-                importoDeposito = decimal.Parse(Console.ReadLine() ?? "");
+                do
+                {
+                    Console.Write("Inserisci l'importo del deposito: ");
+                    importoDeposito = decimal.TryParse(Console.ReadLine(), out decimal result) ? result : 0;
+                    if (importoDeposito <= 0)
+                    {
+                        Console.WriteLine("L'importo del deposito deve essere maggiore di 0!");
+                    }
+                } while (importoDeposito <= 0);
                 conto.Movimenti.Add(new Movimento(importoDeposito, "Deposito"));
                 saldo += importoDeposito;
                 Console.WriteLine($"Hai depositato {importoDeposito} euro con successo! e il tuo saldo è {saldo} euro");
